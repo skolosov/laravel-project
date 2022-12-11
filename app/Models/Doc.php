@@ -11,13 +11,13 @@ class Doc extends Model
     use HasFactory;
 
     protected $table = 'docs';
-
+//открытые для редактирования данные
     protected $fillable = [
         'name',
     ];
 
 
-
+//связь relationship типо join
     public function status(): HasOne
     {
         return $this->hasOne(Status::class,'id', 'status_id');
