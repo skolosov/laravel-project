@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('status_histories', function (Blueprint $table) {
-            $table->id();
-            $table->integer('status_id');
-            $table->foreign('status_id')
-                ->references('id')
-                ->on('statuses');
-            $table->timestamp('status_change');
-        });
+        Schema::create(
+            'drugs',
+            function (Blueprint $table) {
+                $table->id();
+                $table->integer('type')->comment('Вид наркотиков');
+                $table->double('weight',12,5)->comment('Вес наркотиков');
+                $table->timestamps();
+            }
+        );
     }
 
     /**
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('status_histories');
+        Schema::dropIfExists('drugs');
     }
 };

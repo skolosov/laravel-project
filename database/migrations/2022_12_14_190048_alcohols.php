@@ -13,12 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('docs', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->integer('area_id')->nullable();
-            $table->timestamps();
-        });
+        Schema::create(
+            'alcohols',
+            function (Blueprint $table) {
+                $table->id();
+                $table->integer('type')->comment('Вид алкоголь');
+                $table->integer('liter')->comment('Объем');
+                $table->timestamps();
+            }
+        );
     }
 
     /**
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('docs');
+        Schema::dropIfExists('alcohols');
     }
 };
