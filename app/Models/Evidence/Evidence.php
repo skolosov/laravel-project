@@ -22,4 +22,15 @@ class Evidence extends Model
         'resource_id',
         'resource_type',
     ];
+//alcohols
+//drugs
+//moneys
+//transports
+//weapons
+//other_evidences
+
+    public function alcohols()
+    {
+        return $this->hasOne(Alcohol::class, 'id', 'resource_id');
+    }
 }
