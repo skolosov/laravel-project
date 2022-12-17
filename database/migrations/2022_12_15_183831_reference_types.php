@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('status_histories', function (Blueprint $table) {
+        Schema::create('reference_types', function (Blueprint $table) {
             $table->id();
-            $table->integer('status_id');
-            $table->foreign('status_id')
-                ->references('id')
-                ->on('statuses');
-            $table->timestamp('status_change');
+            $table->integer('evidence_type_id')->index();
+            $table->string('type_name')->index();
         });
     }
 
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('status_histories');
+        Schema::dropIfExists('reference_types');
     }
 };

@@ -13,11 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('statuses', function (Blueprint $table) {
-            $table->id();
-            $table->string('status');
-            $table->timestamps();
-        });
+        Schema::create(
+            'moneys',
+            function (Blueprint $table) {
+                $table->id();
+                $table->integer('type')->comment('Вид денег');
+                $table->double('amount',12,2)->comment('Сумма');
+                $table->timestamps();
+            }
+        );
     }
 
     /**
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('statuses');
+        Schema::dropIfExists('moneys');
     }
 };
