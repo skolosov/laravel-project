@@ -4,19 +4,16 @@ namespace App\View\Components\Forms;
 
 use Illuminate\View\Component;
 
-class Form extends Component
+class Select extends Component
 {
-    public string $method;
-    public string $action;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($method, $action)
+    public function __construct()
     {
-        $this->method = $method;
-        $this->action = $action;
+        //
     }
 
     /**
@@ -26,6 +23,6 @@ class Form extends Component
      */
     public function render()
     {
-        return view('components.forms.form');
+        return view('components.forms.select');
     }
 }
