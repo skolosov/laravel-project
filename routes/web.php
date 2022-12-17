@@ -24,3 +24,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/evidence-form', function (\Illuminate\Http\Request $request) {
+    @dump($request->all());
+    return view('evidence-form', ['types' => \App\Models\Evidence\EvidenceType::all(), 'method' => 'post']);
+})->name('evidence-form');
