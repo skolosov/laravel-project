@@ -1,19 +1,18 @@
-<select class="form-select" id="actionSelect" name="type">
-    <option value="alcohols" selected>Алкоголь</option>
-    <option value="drugs">Наркотики</option>
-    <option value="moneys">Деньги</option>
-    <option value="transports">Транспорт</option>
+<select class="form-select" id="actionSelect" name="type_evidence">
+    @foreach($options as $option)
+        @if($selected == $option->id)
+            <option value="{{$option->id}}" selected>{{$option->name}}</option>
+        @else
+            <option value="{{$option->id}}">{{$option->name}}</option>
+        @endif
+    @endforeach
 </select>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const select = document.querySelector('#actionSelect');
-        const inputType = document.querySelector('#typeInput');
-        const bindValue = (value) =>
-            inputType.value = value;
         const onChange = (e) => {
-            bindValue(e.target.value)
+            e.target.parentNode.submit();
         }
         select.addEventListener('change', onChange);
-        bindValue(select.value);
     });
 </script>

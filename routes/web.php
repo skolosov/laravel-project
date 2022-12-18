@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\EvidenceFormController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,8 +25,5 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/evidence-form', function (\Illuminate\Http\Request $request) {
-    @dump($request->all());
-    return view('evidence-form', ['types' => \App\Models\Evidence\EvidenceType::all(), 'method' => 'post']);
-})->name('evidence-form');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/evidence-form', [EvidenceFormController::class, 'getForm'])->name('form');

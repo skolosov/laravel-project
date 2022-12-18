@@ -54,6 +54,6 @@ class EvidenceController extends Controller
             }
         );
 
-        return $resource;
+        return redirect(route('form'));
     }
 }
