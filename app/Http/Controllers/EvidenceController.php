@@ -16,6 +16,8 @@ class EvidenceController extends Controller
     public $models = [
         'alcohol' => Alcohol::class,
         'weapon' => Weapon::class,
+        'drugs' => Drug::class,
+        'money' => Money::class
     ];
 
     public function store(Request $request)
