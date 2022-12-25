@@ -17,6 +17,12 @@ class DecisionSeeder extends Seeder
     public function run()
     {
         Decision::query()->create(
+            ['name' => 'Получено']
+        );
+        Decision::query()->create(
+            ['name' => 'Передано']
+        );
+        Decision::query()->create(
             ['name' => 'Уничтожено']
         );
     }
