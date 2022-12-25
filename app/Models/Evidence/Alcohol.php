@@ -22,4 +22,6 @@ class Alcohol extends Model
         'type',
         'liter',
     ];
+
+
 }

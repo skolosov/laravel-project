@@ -16,8 +16,10 @@ return new class extends Migration {
             'criminal_cases',
             function (Blueprint $table) {
                 $table->id();
-                $table->integer('evidance_id')->comment('Вещественное доказательство');
-                $table->foreign('evidance_id')->references('id')->on('evidences');
+                $table->unsignedBigInteger('evidance_id')->comment('Вещественное доказательство');
+                $table->foreign('evidance_id')
+                    ->references('id')->on('evidences')
+                    ->onDelete('cascade');
                 $table->string('number_ud')->comment('Номер УД');
                 $table->date('date_ud')->comment('Дата возбуждения УД');
 

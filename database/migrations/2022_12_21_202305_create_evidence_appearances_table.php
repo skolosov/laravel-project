@@ -15,10 +15,14 @@ return new class extends Migration
     {
         Schema::create('evidence_appearances', function (Blueprint $table) {
             $table->id();
-            $table->integer('evidance_id')->comment('Вещественное доказательство');
-            $table->foreign('evidance_id')->references('id')->on('evidences');
-            $table->integer('appearance_id')->comment('Вид упаковки');
-            $table->foreign('appearance_id')->references('id')->on('appearances');
+            $table->unsignedBigInteger('evidance_id')->comment('Вещественное доказательство');
+            $table->foreign('evidance_id')
+                ->references('id')->on('evidences')
+                ->onDelete('cascade');
+            $table->unsignedBigInteger('appearance_id')->comment('Вид упаковки');
+            $table->foreign('appearance_id')
+                ->references('id')->on('appearances')
+                ->onDelete('cascade');
             $table->string('condition')->nullable()->comment('Состояние упаковки');
             $table->timestamps();
         });

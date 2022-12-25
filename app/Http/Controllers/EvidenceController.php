@@ -24,7 +24,9 @@ class EvidenceController extends Controller
         $evidences = DB::table('evidences')
             ->leftJoin('evidence_types', 'evidences.resource_type', '=', 'evidence_types.id')
             ->get();
-        dd($evidences);
+        dump($evidences);
+        $evidences1 = Evidence::find(1)->alcohols;
+        dd($evidences1);
 //        return view('evidence',
 //                    ['types' => Evidence::all(), 'method' => 'get']
 //        );
@@ -35,11 +37,11 @@ class EvidenceController extends Controller
         $data = $request->all();
         $resource = null;
         // INSERT dump() dd()
+        //dump($data);
         DB::transaction(
             function () use ($data, &$resource) {
                 $typeName = Arr::pull($data, 'type_name');
                 $resourceType = Arr::pull($data, 'resource_type');
-
                 /** @var EvidenceType $evidenceType */
                 $evidenceType = EvidenceType::find($resourceType);
 

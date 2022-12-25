@@ -15,15 +15,23 @@ return new class extends Migration
     {
         Schema::create('evidence_traffic', function (Blueprint $table) {
             $table->id();
-            $table->integer('evidance_id')->comment('Вещественное доказательство');
-            $table->foreign('evidance_id')->references('id')->on('evidences');
-            $table->integer('decision_id')->comment('Решение');
-            $table->foreign('decision_id')->references('id')->on('decisions');
+            $table->unsignedBigInteger('evidance_id')->comment('Вещественное доказательство');
+            $table->foreign('evidance_id')
+                ->references('id')->on('evidences')
+                ->onDelete('cascade');
+            $table->unsignedBigInteger('decision_id')->comment('Решение');
+            $table->foreign('decision_id')
+                ->references('id')->on('decisions')
+                ->onDelete('cascade');
             $table->date('decision_date')->comment('Дата принятия решения');
-            $table->integer('storage_location_id')->comment('Место нахождения ВД');
-            $table->foreign('storage_location_id')->references('id')->on('storage_locations');
-            $table->integer('staff_id')->comment('Сотрудник сдавший, получивший ВД');
-            $table->foreign('staff_id')->references('id')->on('staff');
+            $table->unsignedBigInteger('storage_location_id')->comment('Место нахождения ВД');
+            $table->foreign('storage_location_id')
+                ->references('id')->on('storage_locations')
+                ->onDelete('cascade');
+            $table->unsignedBigInteger('staff_id')->comment('Сотрудник сдавший, получивший ВД');
+            $table->foreign('staff_id')
+                ->references('id')->on('staff')
+                ->onDelete('cascade');
             $table->string('doc_number')->nullable()->comment('Номер документа');
             $table->date('doc_date')->nullable()->comment('Дата документа');
             $table->timestamps();

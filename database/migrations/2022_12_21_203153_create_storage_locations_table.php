@@ -16,10 +16,14 @@ return new class extends Migration {
             'storage_locations',
             function (Blueprint $table) {
                 $table->id();
-                $table->integer('evidance_id')->comment('Вещественное доказательство');
-                $table->foreign('evidance_id')->references('id')->on('evidences');
-                $table->integer('division_id')->comment('Подразделение в котором хранится вещественное доказательство');
-                $table->foreign('division_id')->references('id')->on('divisions');
+                $table->unsignedBigInteger('evidance_id')->comment('Вещественное доказательство');
+                $table->foreign('evidance_id')
+                    ->references('id')->on('evidences')
+                    ->onDelete('cascade');
+                $table->unsignedBigInteger('division_id')->comment('Подразделение в котором хранится вещественное доказательство');
+                $table->foreign('division_id')
+                    ->references('id')->on('divisions')
+                    ->onDelete('cascade');
                 $table->string('name')->comment('Место хранения');
 
                 $table->timestamps();

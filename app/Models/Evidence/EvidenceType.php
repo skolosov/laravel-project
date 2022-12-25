@@ -2,6 +2,8 @@
 
 namespace App\Models\Evidence;
 
+
+use App\Models\Evidence\Evidence;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -24,4 +26,6 @@ class EvidenceType extends Model
     ];
 
     public $timestamps = false;
+
+
 }
