@@ -3,6 +3,10 @@
 namespace App\Models\Evidence;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Evidence\Alcohol;
+use App\Models\Evidence\EvidenceType;
+use App\Models\Evidence\ReferenceType;
+use App\Models\Evidence\Weapon;
 
 /**
  * Class Evidence
@@ -22,15 +26,32 @@ class Evidence extends Model
         'resource_id',
         'resource_type',
     ];
-//alcohols
-//drugs
-//moneys
-//transports
-//weapons
-//other_evidences
+
 
     public function alcohols()
     {
-        return $this->hasOne(Alcohol::class, 'id', 'resource_id');
+        return $this->hasone(Alcohol::class, 'id', 'resource_id')->withDefault();;
     }
+
+    public function drugs()
+    {
+        return $this->hasOne(Drug::class, 'id', 'resource_type')->withDefault();;
+    }
+
+    public function moneys()
+    {
+        return $this->hasOne(Money::class, 'id', 'resource_type')->withDefault();;
+    }
+
+    public function transports()
+    {
+        return $this->hasOne(Transport::class, 'id', 'resource_type')->withDefault();;
+    }
+
+    public function other_evidences()
+    {
+        return $this->hasOne(OtherEvidences::class, 'id', 'resource_type')->withDefault();;
+    }
+
+
 }

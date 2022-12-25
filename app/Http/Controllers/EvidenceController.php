@@ -18,16 +18,30 @@ class EvidenceController extends Controller
         'weapon' => Weapon::class,
     ];
 
+    public function index()
+    {
+        //$evidences = Evidence::all();
+        $evidences = DB::table('evidences')
+            ->leftJoin('evidence_types', 'evidences.resource_type', '=', 'evidence_types.id')
+            ->get();
+        dump($evidences);
+        $evidences1 = Evidence::find(1)->alcohols;
+        dd($evidences1);
+//        return view('evidence',
+//                    ['types' => Evidence::all(), 'method' => 'get']
+//        );
+    }
+
     public function store(Request $request)
     {
         $data = $request->all();
         $resource = null;
         // INSERT dump() dd()
+        //dump($data);
         DB::transaction(
             function () use ($data, &$resource) {
                 $typeName = Arr::pull($data, 'type_name');
                 $resourceType = Arr::pull($data, 'resource_type');
-
                 /** @var EvidenceType $evidenceType */
                 $evidenceType = EvidenceType::find($resourceType);
 
@@ -54,6 +68,6 @@ class EvidenceController extends Controller
             }
         );
 
-        return redirect(route('form'));
+        return redirect(route('evidence-form'));
     }
 }

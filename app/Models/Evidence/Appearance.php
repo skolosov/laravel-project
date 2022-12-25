@@ -2,30 +2,20 @@
 
 namespace App\Models\Evidence;
 
-
-use App\Models\Evidence\Evidence;
 use Illuminate\Database\Eloquent\Model;
-
 /**
- * Class EvidenceType
+ * Class Appearance
  * @package App\Models\Evidence
  *
  * @property int id
  * @property string name
- * @property string table_name
- * @property string model_namespace
  */
-class EvidenceType extends Model
+class Appearance extends Model
 {
-    protected $table = 'evidence_types';
+    protected $table = 'appearances';
 
     protected $fillable = [
         'name',
-        'table_name',
-        'model_namespace'
     ];
-
     public $timestamps = false;
-
-
 }
