@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Evidence\Alcohol;
 use App\Models\Evidence\Evidence;
+use App\Models\Evidence\EvidenceTraffic;
 use App\Models\Evidence\EvidenceType;
 use App\Models\Evidence\ReferenceType;
 use App\Models\Evidence\Weapon;
@@ -26,7 +27,11 @@ class EvidenceController extends Controller
             ->get();
         dump($evidences);
         $evidences1 = Evidence::find(1)->alcohols;
-        dd($evidences1);
+        dump($evidences1);
+
+        $evidence_traffics=Evidence::find(1)->evidence_traffics;
+        dd($evidence_traffics);
+
 //        return view('evidence',
 //                    ['types' => Evidence::all(), 'method' => 'get']
 //        );
