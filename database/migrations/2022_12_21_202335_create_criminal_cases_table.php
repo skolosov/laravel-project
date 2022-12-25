@@ -13,7 +13,7 @@ return new class extends Migration {
     public function up()
     {
         Schema::create(
-            'u_d_s',
+            'criminal_cases',
             function (Blueprint $table) {
                 $table->id();
                 $table->integer('evidance_id')->comment('Вещественное доказательство');

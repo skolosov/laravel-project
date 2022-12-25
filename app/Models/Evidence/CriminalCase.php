@@ -16,9 +16,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string created_at
  * @property string updated_at
  */
-class UD extends Model
+class CriminalCase extends Model
 {
-    protected $table = 'u_d_s';
+    protected $table = 'criminal_cases';
 
     protected $fillable = [
         'evidance_id',
