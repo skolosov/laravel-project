@@ -17,10 +17,9 @@ class EvidenceTrafficController extends Controller
 
     public function index()
     {
-        $evidence = Evidence::find(1);
+        $evidence = EvidenceTraffic::find(2)->evidence;
         //$evidence_traffic = EvidenceTraffic::all();
-        //$evidence_traffic = EvidenceTraffic::find(1)->evidence;
-        dd($evidence->evidence_traffics);
+        dd($evidence);
     }
 
 

@@ -37,6 +37,6 @@ class EvidenceTraffic extends Model
 
     public function evidence()
     {
-        return $this->belongsTo(Evidence::class,'id','evidence_id')->withDefault();
+        return $this->belongsTo(Evidence::class);
     }
 }
