@@ -18,6 +18,18 @@ class EvidenceController extends Controller
         'weapon' => Weapon::class,
     ];
 
+    public function index()
+    {
+        //$evidences = Evidence::all();
+        $evidences = DB::table('evidences')
+            ->leftJoin('evidence_types', 'evidences.resource_type', '=', 'evidence_types.id')
+            ->get();
+        dd($evidences);
+//        return view('evidence',
+//                    ['types' => Evidence::all(), 'method' => 'get']
+//        );
+    }
+
     public function store(Request $request)
     {
         $data = $request->all();
@@ -54,6 +66,6 @@ class EvidenceController extends Controller
             }
         );
 
-        return redirect(route('form'));
+        return redirect(route('evidence-form'));
     }
 }

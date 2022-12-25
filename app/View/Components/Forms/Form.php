@@ -4,6 +4,7 @@ namespace App\View\Components\Forms;
 
 use Illuminate\View\Component;
 
+
 class Form extends Component
 {
     public string $method;

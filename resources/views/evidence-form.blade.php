@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <h1>Вещественные доказательства</h1>
-        <x-forms.form method="get" action="{{route('form')}}">
+        <x-forms.form method="get" action="{{route('evidence-form')}}">
             <x-forms.select :options="$types" :selected="$type"/>
         </x-forms.form>
 {{--        @dump($type)--}}

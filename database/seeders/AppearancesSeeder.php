@@ -19,13 +19,13 @@ class AppearancesSeeder extends Seeder
             ['name' =>"Нет упаковки"]
         );
         Appearance::query()->create(
-            ['name' => "Целая упаковка"]
+            ['name' => "Мягкая"]
         );
         Appearance::query()->create(
-            ['name' => "Небольшие потертости"]
+            ['name' => "Полужесткая"]
         );
         Appearance::query()->create(
-            ['name' => "Помято\порвано"]
+            ['name' => "Жесткая"]
         );
     }
 }

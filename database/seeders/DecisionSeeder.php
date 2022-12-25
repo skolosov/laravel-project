@@ -17,13 +17,19 @@ class DecisionSeeder extends Seeder
     public function run()
     {
         Decision::query()->create(
-            ['name' => 'Получено']
+            ['name' => 'передача на хранение в камеру вещественных доказательств']
         );
         Decision::query()->create(
-            ['name' => 'Передано']
+            ['name' => 'передача на хранение в финансовое подразделение органа внутренних дел ']
         );
         Decision::query()->create(
-            ['name' => 'Уничтожено']
+            ['name' => 'передача на хранение третьим лицам']
+        );
+        Decision::query()->create(
+            ['name' => 'уничтожено']
+        );
+        Decision::query()->create(
+            ['name' => 'реализация']
         );
     }
 }
