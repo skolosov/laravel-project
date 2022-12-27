@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Evidence\Alcohol;
 use App\Models\Evidence\Evidence;
+use App\Models\Evidence\EvidenceTraffic;
 use App\Models\Evidence\EvidenceType;
 use App\Models\Evidence\ReferenceType;
 use App\Models\Evidence\Weapon;
@@ -29,17 +30,20 @@ class EvidenceController extends Controller
 
     public function index()
     {
-        dd(Evidence::all()->take(2));
-//        //$evidences = Evidence::all();
-//        $evidences = DB::table('evidences')
-//            ->leftJoin('evidence_types', 'evidences.resource_type', '=', 'evidence_types.id')
-//            ->get();
-//        dump($evidences);
-//        $evidences1 = Evidence::find(1)->alcohols;
-//        dd($evidences1);
-////        return view('evidence',
-////                    ['types' => Evidence::all(), 'method' => 'get']
-////        );
+        //$evidences = Evidence::all();
+        $evidences = DB::table('evidences')
+            ->leftJoin('evidence_types', 'evidences.resource_type', '=', 'evidence_types.id')
+            ->get();
+        dump($evidences);
+        $evidences1 = Evidence::find(1)->alcohols;
+        dump($evidences1);
+
+        $evidence_traffics=Evidence::find(1)->evidence_traffics;
+        dd($evidence_traffics);
+
+//        return view('evidence',
+//                    ['types' => Evidence::all(), 'method' => 'get']
+//        );
     }
 
     public function store(Request $request)

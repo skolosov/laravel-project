@@ -30,7 +30,11 @@ class Evidence extends Model
         'resource_type',
     ];
 
-    protected $with = ['evidenceType'];
+
+    public function evidence_traffics()
+    {
+        return $this->hasMany(EvidenceTraffic::class,'evidence_id','id');
+    }
 
     public function evidenceType(): BelongsTo
     {

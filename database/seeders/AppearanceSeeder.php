@@ -6,7 +6,7 @@ use App\Models\Evidence\Appearance;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class AppearancesSeeder extends Seeder
+class AppearanceSeeder extends Seeder
 {
     /**
      * Run the database seeds.

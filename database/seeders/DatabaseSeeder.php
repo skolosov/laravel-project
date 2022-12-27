@@ -16,10 +16,11 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(
             [
-                EvidenceTypeSeeder::class,
+                AppearanceSeeder::class,
                 DecisionSeeder::class,
-                DivisionsSeeder::class,
-                AppearancesSeeder::class
+                DivisionSeeder::class,
+                EvidenceTypeSeeder::class,
+                PostSeeder::class,
             ]
         );
         // \App\Models\User::factory(10)->create();

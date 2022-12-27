@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('evidence_traffic', function (Blueprint $table) {
+        Schema::create('evidence_traffics', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('evidance_id')->comment('Вещественное доказательство');
-            $table->foreign('evidance_id')
+            $table->unsignedBigInteger('evidence_id')->comment('Вещественное доказательство');
+            $table->foreign('evidence_id')
                 ->references('id')->on('evidences')
                 ->onDelete('cascade');
             $table->unsignedBigInteger('decision_id')->comment('Решение');

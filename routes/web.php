@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EvidenceFormController;
+use App\Http\Controllers\EvidenceTrafficController;
 use App\Http\Controllers\EvidenceController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
@@ -29,3 +30,4 @@ Route::resource('evidences', EvidenceController::class);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/evidence-form', [EvidenceFormController::class, 'getForm'])->name('evidence-form');
 Route::get('/evidences', [EvidenceController::class, 'index'])->name('evidences');;
+Route::get('/evidences-traffic-form', [EvidenceTrafficController::class, 'index'])->name('evidences-traffic-form');;

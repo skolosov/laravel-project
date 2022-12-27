@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('evidence_appearances', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('evidance_id')->comment('Вещественное доказательство');
-            $table->foreign('evidance_id')
+            $table->unsignedBigInteger('evidence_id')->comment('Вещественное доказательство');
+            $table->foreign('evidence_id','evidence_appearances_evidence_fk')
                 ->references('id')->on('evidences')
                 ->onDelete('cascade');
             $table->unsignedBigInteger('appearance_id')->comment('Вид упаковки');
