@@ -10,9 +10,9 @@ use Illuminate\Database\Eloquent\Model;
  * @package App\Models\Evidence
  *
  * @property int id
- * @property int evidance_id
+ * @property int evidence_id
  * @property string number_ud
- * @property date date_ud
+ * @property string date_ud
  * @property string created_at
  * @property string updated_at
  */
@@ -21,7 +21,7 @@ class CriminalCase extends Model
     protected $table = 'criminal_cases';
 
     protected $fillable = [
-        'evidance_id',
+        'evidence_id',
         'number_ud',
         'date_ud',
     ];

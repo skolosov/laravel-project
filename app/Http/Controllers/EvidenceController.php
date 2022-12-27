@@ -78,6 +78,6 @@ class EvidenceController extends Controller
             }
         );
 
-        return redirect(route('evidence-form'));
+        return redirect(route('evidence.create'));
     }
 }

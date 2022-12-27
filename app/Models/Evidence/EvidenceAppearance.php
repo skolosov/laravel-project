@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
  * @package App\Models\Evidence
  *
  * @property int id
- * @property int evidance_id
+ * @property int evidence_id
  * @property int appearance_id
  * @property string condition
  * @property string created_at
@@ -19,7 +19,7 @@ class EvidenceAppearance extends Model
     protected $table = 'evidence_appearances';
 
     protected $fillable = [
-        'evidance_id',
+        'evidence_id',
         'appearance_id',
         'condition',
     ];

@@ -30,6 +30,7 @@ class Evidence extends Model
         'resource_type',
     ];
 
+
     protected $with = ['evidenceType'];
 
     public function evidenceType(): BelongsTo

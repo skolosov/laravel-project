@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @package App\Models\Evidence
  *
  * @property int id
- * @property int evidance_id
+ * @property int evidence_id
  * @property int decision_id
  * @property string decision_date
  * @property int storage_location_id
@@ -23,10 +23,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class EvidenceTraffic extends Model
 {
-    protected $table = 'evidence_traffic';
+    protected $table = 'evidence_traffics';
 
     protected $fillable = [
-        'evidance_id',
+        'evidence_id',
         'decision_id',
         'decision_date',
         'storage_location_id',
