@@ -33,4 +33,9 @@ class EvidenceTraffic extends Model
         'doc_number',
         'doc_date',
     ];
+
+    public function evidence()
+    {
+       return $this->belongsTo(Evidence::class,'evidence_id','id');
+    }
 }
