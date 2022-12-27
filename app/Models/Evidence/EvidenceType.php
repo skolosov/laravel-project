@@ -4,6 +4,7 @@ namespace App\Models\Evidence;
 
 
 use App\Models\Evidence\Evidence;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -17,6 +18,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class EvidenceType extends Model
 {
+    use HasFactory;
+
     protected $table = 'evidence_types';
 
     protected $fillable = [

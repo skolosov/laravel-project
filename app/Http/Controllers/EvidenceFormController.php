@@ -15,9 +15,6 @@ class EvidenceFormController extends Controller
 {
     public function getForm(Request $request)
     {
-        $type = $request->get('type_evidence', null);
-        return view('evidence-form',
-            ['types' => EvidenceType::all(), 'method' => 'post', 'type' => $type ?? 1]
-        );
+
     }
 }
