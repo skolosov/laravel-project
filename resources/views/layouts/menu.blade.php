@@ -30,6 +30,11 @@
                         </li>
                     @endif
                 @else
+                    @unless(Route::currentRouteName() === 'evidences.create')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('evidences.create') }}">Создать вещьдок</a>
+                        </li>
+                    @endunless
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

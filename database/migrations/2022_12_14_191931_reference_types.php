@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('reference_types', function (Blueprint $table) {
             $table->id();
             $table->integer('evidence_type_id')->index();
+            $table->foreign('evidence_type_id')
+                ->on('evidence_types')
+                ->references('id')
+                ->cascadeOnDelete();
             $table->string('type_name')->index();
         });
     }

@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\DB;
 
 class EvidenceController extends Controller
 {
+    public function create(Request $request)
+    {
+        $type = $request->get('type_evidence');
+        return view(
+            'evidence-form',
+            ['types' => EvidenceType::all(), 'method' => 'post', 'type' => $type ?? 1]
+        );
+    }
+
     public $models = [
         'alcohol' => Alcohol::class,
         'weapon' => Weapon::class,
@@ -20,16 +29,17 @@ class EvidenceController extends Controller
 
     public function index()
     {
-        //$evidences = Evidence::all();
-        $evidences = DB::table('evidences')
-            ->leftJoin('evidence_types', 'evidences.resource_type', '=', 'evidence_types.id')
-            ->get();
-        dump($evidences);
-        $evidences1 = Evidence::find(1)->alcohols;
-        dd($evidences1);
-//        return view('evidence',
-//                    ['types' => Evidence::all(), 'method' => 'get']
-//        );
+        dd(Evidence::all()->take(2));
+//        //$evidences = Evidence::all();
+//        $evidences = DB::table('evidences')
+//            ->leftJoin('evidence_types', 'evidences.resource_type', '=', 'evidence_types.id')
+//            ->get();
+//        dump($evidences);
+//        $evidences1 = Evidence::find(1)->alcohols;
+//        dd($evidences1);
+////        return view('evidence',
+////                    ['types' => Evidence::all(), 'method' => 'get']
+////        );
     }
 
     public function store(Request $request)
