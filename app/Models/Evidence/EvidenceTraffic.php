@@ -2,8 +2,9 @@
 
 namespace App\Models\Evidence;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 /**
  * Class EvidenceAppearance
  * @package App\Models\Evidence
@@ -11,11 +12,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property int id
  * @property int evidance_id
  * @property int decision_id
- * @property date decision_date
+ * @property string decision_date
  * @property int storage_location_id
  * @property int staff_id
  * @property string doc_number
- * @property date doc_date
+ * @property string doc_date
  * @property string created_at
  * @property string updated_at
  */
@@ -34,7 +35,7 @@ class EvidenceTraffic extends Model
         'doc_date',
     ];
 
-    public function evidence()
+    public function evidence(): BelongsTo
     {
        return $this->belongsTo(Evidence::class,'evidence_id','id');
     }
