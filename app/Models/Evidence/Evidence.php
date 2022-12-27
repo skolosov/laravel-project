@@ -2,11 +2,10 @@
 
 namespace App\Models\Evidence;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Evidence\Alcohol;
-use App\Models\Evidence\EvidenceType;
-use App\Models\Evidence\ReferenceType;
-use App\Models\Evidence\Weapon;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Class Evidence
@@ -17,9 +16,13 @@ use App\Models\Evidence\Weapon;
  * @property int resource_type
  * @property string created_at
  * @property string updated_at
+ *
+ * @property BelongsTo $evidenceType
  */
 class Evidence extends Model
 {
+    use HasFactory;
+
     protected $table = 'evidences';
 
     protected $fillable = [
@@ -27,31 +30,15 @@ class Evidence extends Model
         'resource_type',
     ];
 
+    protected $with = ['evidenceType'];
 
-    public function alcohols()
+    public function evidenceType(): BelongsTo
     {
-        return $this->hasone(Alcohol::class, 'id', 'resource_id')->withDefault();;
+        return $this->belongsTo(EvidenceType::class, 'resource_type', 'id');
     }
 
-    public function drugs()
+    public function resource(): BelongsTo
     {
-        return $this->hasOne(Drug::class, 'id', 'resource_type')->withDefault();;
+        return $this->belongsTo($this->evidenceType->model_namespace, 'resource_id', 'id');
     }
-
-    public function moneys()
-    {
-        return $this->hasOne(Money::class, 'id', 'resource_type')->withDefault();;
-    }
-
-    public function transports()
-    {
-        return $this->hasOne(Transport::class, 'id', 'resource_type')->withDefault();;
-    }
-
-    public function other_evidences()
-    {
-        return $this->hasOne(OtherEvidences::class, 'id', 'resource_type')->withDefault();;
-    }
-
-
 }

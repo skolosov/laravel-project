@@ -2,7 +2,9 @@
 
 namespace App\Models\Evidence;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class ReferenceType
@@ -14,6 +16,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ReferenceType extends Model
 {
+    use HasFactory;
+
     protected $table = 'reference_types';
 
     protected $fillable = [
@@ -22,4 +26,14 @@ class ReferenceType extends Model
     ];
 
     public $timestamps = false;
+
+    public function evidenceType(): BelongsTo
+    {
+        return $this->belongsTo(EvidenceType::class, 'evidence_type_id', 'id');
+    }
+
+    public function evidenceResources()
+    {
+
+    }
 }

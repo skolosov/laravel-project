@@ -2,7 +2,9 @@
 
 namespace App\Models\Evidence;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class OtherEvidence
@@ -20,6 +22,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class OtherEvidence extends Model
 {
+    use HasFactory;
+
     protected $table = 'other_evidences';
 
     protected $fillable = [

@@ -2,7 +2,9 @@
 
 namespace App\Models\Evidence;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Money
@@ -16,6 +18,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Money extends Model
 {
+    use HasFactory;
+
     protected $table = 'moneys';
 
     protected $fillable = [

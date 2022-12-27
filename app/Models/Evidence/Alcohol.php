@@ -2,7 +2,9 @@
 
 namespace App\Models\Evidence;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Alcohol
@@ -16,12 +18,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Alcohol extends Model
 {
+    use HasFactory;
+
     protected $table = 'alcohols';
 
     protected $fillable = [
         'type',
         'liter',
     ];
-
-
 }

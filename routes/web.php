@@ -25,7 +25,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+Route::resource('evidences', EvidenceController::class);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/evidence-form', [EvidenceFormController::class, 'getForm'])->name('evidence-form');
 Route::get('/evidences', [EvidenceController::class, 'index'])->name('evidences');;
