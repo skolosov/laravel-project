@@ -2,7 +2,8 @@
 @section('content')
     <div class="container">
         <h1>Вещественные доказательства</h1>
-        <x-forms.form method="get" action="{{route('evidences.create')}}">
+        <x-forms.form method="get" action="{{route('evidence-form')}}">
+            {{-- get $types from EvidenceFormController and set $options=$types ($types it's a result of select * from evidence_type--}}
             <x-forms.select :options="$types" :selected="$type"/>
         </x-forms.form>
 {{--        @dump($type)--}}
