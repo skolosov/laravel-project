@@ -16,7 +16,8 @@ return new class extends Migration {
             'weapons',
             function (Blueprint $table) {
                 $table->id();
-                $table->integer('type')->comment('Вид оружия');
+//                $table->integer('type')->comment('Вид оружия');
+                $table->string('name')->comment('Вид оружия');
                 $table->string('brand')->nullable()->comment('Марка оружия');
                 $table->string('series')->nullable()->comment('Серия оружия');
                 $table->string('number')->nullable()->comment('Номер оружия');

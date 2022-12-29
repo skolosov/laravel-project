@@ -17,7 +17,8 @@ return new class extends Migration
             'alcohols',
             function (Blueprint $table) {
                 $table->id();
-                $table->integer('type')->comment('Вид алкоголь');
+//                $table->integer('type')->comment('Вид алкоголь');
+                $table->string('name')->comment('Вид алкоголь');
                 $table->integer('liter')->comment('Объем');
                 $table->timestamps();
             }

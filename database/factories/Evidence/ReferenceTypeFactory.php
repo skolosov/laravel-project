@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories\Evidence;
+namespace Database\Factories\Evidence\Resources;
 
 use App\Models\Evidence\EvidenceType;
 use App\Models\Evidence\ReferenceType;
@@ -24,7 +24,8 @@ class ReferenceTypeFactory extends Factory
     public function definition()
     {
         return [
-            'evidence_type_id' => EvidenceType::all()->random()->id,
+            'reference_id' => EvidenceType::all()->random()->id,
+            'reference_type',
             'type_name' => $this->faker->text(20),
         ];
     }

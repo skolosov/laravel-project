@@ -1,9 +1,9 @@
 <?php
 
-namespace Database\Factories\Evidence;
+namespace Database\Factories\Evidence\Resources;
 
 use App\Models\Evidence\ReferenceType;
-use App\Models\Evidence\Transport;
+use App\Models\Evidence\Resources\Transport;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,7 +21,7 @@ class TransportFactory extends Factory
     public function definition()
     {
         return [
-            'type' => ReferenceType::factory()->create()->id,
+            'name' => $this->faker->text(20),
             'engine_number' => $this->faker->bothify('#######'),
             'registration_number' => $this->faker->bothify('###.#####.###'),
             'brand' => $this->faker->text(10),

@@ -16,7 +16,8 @@ return new class extends Migration {
             'transports',
             function (Blueprint $table) {
                 $table->id();
-                $table->integer('type')->nullable()->comment('Вид оружия');
+//                $table->integer('type')->nullable()->comment('Вид оружия');
+                $table->string('name')->comment('Вид ТС');
                 $table->string('engine_number')->nullable()->comment('Номер двигателя');
                 $table->string('registration_number')->nullable()->comment('Регистрационный номер');
                 $table->string('brand')->nullable()->comment('Марка');

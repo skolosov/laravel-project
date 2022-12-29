@@ -17,7 +17,8 @@ return new class extends Migration
             'drugs',
             function (Blueprint $table) {
                 $table->id();
-                $table->integer('type')->comment('Вид наркотиков');
+//                $table->integer('type')->comment('Вид наркотиков');
+                $table->string('name')->comment('Вид наркотиков');
                 $table->double('weight',12,5)->comment('Вес наркотиков');
                 $table->timestamps();
             }

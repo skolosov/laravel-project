@@ -1,9 +1,9 @@
 <?php
 
-namespace Database\Factories\Evidence;
+namespace Database\Factories\Evidence\Resources;
 
 use App\Models\Evidence\ReferenceType;
-use App\Models\Evidence\Weapon;
+use App\Models\Evidence\Resources\Weapon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,7 +21,7 @@ class WeaponFactory extends Factory
     public function definition()
     {
         return [
-            'type' => ReferenceType::factory()->create()->id,
+            'name' => $this->faker->text(20),
             'brand' => $this->faker->text(10),
             'series' => $this->faker->bothify('#### ####'),
             'number' => $this->faker->bothify('######'),

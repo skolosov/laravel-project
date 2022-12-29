@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Evidence\Alcohol;
-use App\Models\Evidence\Drug;
-use App\Models\Evidence\Money;
-use App\Models\Evidence\OtherEvidence;
-use App\Models\Evidence\Transport;
-use App\Models\Evidence\Weapon;
+use App\Models\Evidence\Resources\Alcohol;
+use App\Models\Evidence\Resources\Drug;
+use App\Models\Evidence\Resources\Money;
+use App\Models\Evidence\Resources\OtherEvidence;
+use App\Models\Evidence\Resources\Transport;
+use App\Models\Evidence\Resources\Weapon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Evidence\EvidenceType;

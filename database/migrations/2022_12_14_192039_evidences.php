@@ -16,10 +16,8 @@ return new class extends Migration {
             'evidences',
             function (Blueprint $table) {
                 $table->id();
-                $table->integer('resource_id')->comment('Ссылка на строку в таблице ресурса');
-                $table->integer('resource_type')->comment('Имя таблицы');
-                $table->index(['resource_id', 'resource_type']);
-                $table->foreign('resource_type')->references('id')->on('evidence_types');
+                $table->integer('resource_id')->index()->comment('Ссылка на строку в таблице ресурса');
+                $table->string('resource_type')->index()->comment('Тип таблицы');
                 $table->timestamps();
             }
         );

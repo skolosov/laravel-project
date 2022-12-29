@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Models\Evidence;
+namespace App\Models\Evidence\Resources;
 
+use App\Models\Evidence\ReferenceType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 /**
  * Class Transport
@@ -26,11 +28,16 @@ class Transport extends Model
     protected $table = 'transports';
 
     protected $fillable = [
-        'type',
+        'name',
         'engine_number',
         'registration_number',
         'brand',
         'color',
         'release_date',
     ];
+
+    public function evidence(): MorphOne
+    {
+        return $this->morphOne(Evidence::class, 'resource', 'resource_type', 'resource_id');
+    }
 }

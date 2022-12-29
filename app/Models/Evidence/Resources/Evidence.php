@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\Evidence;
+namespace App\Models\Evidence\Resources;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
  * Class Evidence
@@ -30,15 +30,20 @@ class Evidence extends Model
         'resource_type',
     ];
 
-    protected $with = ['evidenceType'];
+//    protected $with = ['evidenceType'];
+//
+//    public function evidenceType(): BelongsTo
+//    {
+//        return $this->belongsTo(EvidenceType::class, 'resource_type', 'id');
+//    }
+//
+//    public function resource(): BelongsTo
+//    {
+//        return $this->belongsTo($this->evidenceType->model_namespace, 'resource_id', 'id');
+//    }
 
-    public function evidenceType(): BelongsTo
+    public function resource(): MorphTo
     {
-        return $this->belongsTo(EvidenceType::class, 'resource_type', 'id');
-    }
-
-    public function resource(): BelongsTo
-    {
-        return $this->belongsTo($this->evidenceType->model_namespace, 'resource_id', 'id');
+        return $this->morphTo();
     }
 }

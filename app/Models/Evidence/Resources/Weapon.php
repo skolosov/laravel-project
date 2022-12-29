@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Models\Evidence;
+namespace App\Models\Evidence\Resources;
 
+use App\Models\Evidence\ReferenceType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 /**
  * Class Weapon
@@ -26,11 +28,16 @@ class Weapon extends Model
     protected $table = 'weapons';
 
     protected $fillable = [
-        'type',
+        'name',
         'brand',
         'series',
         'number',
         'detail',
         'release_date',
     ];
+
+    public function evidence(): MorphOne
+    {
+        return $this->morphOne(Evidence::class, 'resource', 'resource_type', 'resource_id');
+    }
 }

@@ -1,18 +1,18 @@
 <?php
 
-namespace Database\Factories\Evidence;
+namespace Database\Factories\Evidence\Resources;
 
-use App\Models\Evidence\OtherEvidence;
 use App\Models\Evidence\ReferenceType;
+use App\Models\Evidence\Resources\Money;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class OtherEvidenceFactory extends Factory
+class MoneyFactory extends Factory
 {
-    protected $model = OtherEvidence::class;
+    protected $model = Money::class;
 
     /**
      * Define the model's default state.
@@ -22,12 +22,8 @@ class OtherEvidenceFactory extends Factory
     public function definition()
     {
         return [
-            'type' => ReferenceType::factory()->create()->id,
-            'quantity' => $this->faker->randomNumber(2),
-            'unit_name' => $this->faker->text(15),
+            'name' => $this->faker->text(20),
             'amount' => $this->faker->randomFloat(6),
-            'number' => $this->faker->bothify('#######'),
-            'name' => $this->faker->text(10),
         ];
     }
 }

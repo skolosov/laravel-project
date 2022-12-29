@@ -7,7 +7,7 @@
         </x-forms.form>
 {{--        @dump($type)--}}
         <x-forms.form method="post" action="{{route('evidences.store')}}">
-            <x-forms.input input-type="text" name-input="type_name"
+            <x-forms.input input-type="text" name-input="name"
                            label-title="Наименование вещественного доказательства"
                            placeholder="Наименование вещественного доказательства"/>
             <x-forms.input input-type="hidden" name-input="resource_type" label-title="resource_type"
@@ -41,7 +41,7 @@
             @elseif($type == 6)
                 <x-forms.input input-type="text" name-input="unit_name" label-title="Имя устройства"
                                placeholder="Имя устройства"></x-forms.input>
-                <x-forms.input input-type="text" name-input="name" label-title="Наименование"
+                <x-forms.input input-type="text" name-input="designation" label-title="Наименование"
                                placeholder="Наименование"/>
                 <x-forms.input input-type="text" name-input="quantity" label-title="Количество"
                                placeholder="Количество"/>

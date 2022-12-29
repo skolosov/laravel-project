@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Models\Evidence;
+namespace App\Models\Evidence\Resources;
 
+use App\Models\Evidence\ReferenceType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 /**
  * Class Money
@@ -23,7 +25,12 @@ class Money extends Model
     protected $table = 'moneys';
 
     protected $fillable = [
-        'type',
+        'name',
         'amount',
     ];
+
+    public function evidence(): MorphOne
+    {
+        return $this->morphOne(Evidence::class, 'resource', 'resource_type', 'resource_id');
+    }
 }

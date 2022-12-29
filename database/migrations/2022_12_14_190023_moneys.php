@@ -17,7 +17,8 @@ return new class extends Migration
             'moneys',
             function (Blueprint $table) {
                 $table->id();
-                $table->integer('type')->comment('Вид денег');
+//                $table->integer('type')->comment('Вид денег');
+                $table->string('name')->comment('Вид денег');
                 $table->double('amount',12,2)->comment('Сумма');
                 $table->timestamps();
             }

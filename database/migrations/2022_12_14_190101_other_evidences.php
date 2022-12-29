@@ -17,12 +17,13 @@ return new class extends Migration
             'other_evidences',
             function (Blueprint $table) {
                 $table->id();
-                $table->integer('type')->comment('Вид');
+//                $table->integer('type')->comment('Вид');
+                $table->string('name')->comment('Вид сущности');
                 $table->integer('quantity')->nullable()->comment('Количество');
                 $table->string('unit_name')->nullable()->comment('Единицы измерения');
                 $table->double('amount',12,2)->nullable()->comment('Сумма');
                 $table->string('number')->nullable()->comment('Номер');
-                $table->string('name')->nullable()->comment('Наименование');
+                $table->string('designation')->nullable()->comment('Наименование');
                 $table->timestamps();
             }
         );
