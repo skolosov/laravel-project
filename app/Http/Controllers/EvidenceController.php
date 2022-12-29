@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Evidence\EvidenceType;
-use App\Models\Evidence\ReferenceType;
 use App\Models\Evidence\Resources\Alcohol;
 use App\Models\Evidence\Resources\Drug;
 use App\Models\Evidence\Resources\Evidence;
@@ -18,12 +16,17 @@ use Illuminate\Support\Facades\DB;
 class EvidenceController extends Controller
 {
     public array $resourcesModels = [
-        1 => Alcohol::class,
-        2 => Drug::class,
-        3 => Money::class,
-        4 => Transport::class,
-        5 => Weapon::class,
-        6 => OtherEvidence::class,
+        1 => ['id' => 1, 'name' => 'Алкоголь', 'table_name' => 'alcohols', 'model_namespace' => Alcohol::class],
+        2 => ['id' => 2, 'name' => 'Наркотики', 'table_name' => 'drugs', 'model_namespace' => Drug::class],
+        3 => ['id' => 3, 'name' => 'Деньги', 'table_name' => 'moneys', 'model_namespace' => Money::class],
+        4 => ['id' => 4, 'name' => 'Транспорт', 'table_name' => 'transports', 'model_namespace' => Transport::class],
+        5 => ['id' => 5, 'name' => 'Оружие', 'table_name' => 'weapons', 'model_namespace' => Weapon::class],
+        6 => [
+            'id' => 6,
+            'name' => 'Иные вещдоки',
+            'table_name' => 'other_evidences',
+            'model_namespace' => OtherEvidence::class
+        ],
     ];
 
     public function create(Request $request)
@@ -31,27 +34,35 @@ class EvidenceController extends Controller
         $type = $request->get('type_evidence');
         return view(
             'evidence-form',
-            ['types' => EvidenceType::all(), 'method' => 'post', 'type' => $type ?? 1]
+            ['types' => $this->resourcesModels, 'method' => 'post', 'type' => $type ?? 1]
         );
     }
 
     public function index()
     {
-        return Evidence::with('resource')->get();
+        //return Evidence::with('resource')->get();
+        return view(
+            'evidence',
+            [
+                'evidencesArray' => Evidence::with('resource')->get()
+            ]
+        );
     }
 
     public function store(Request $request)
     {
         $data = $request->all();
         $type = Arr::pull($data, 'resource_type');
-        $model = $this->resourcesModels[$type];
-        DB::transaction(function () use ($model, $data){
-            $resource = new $model();
-            $resource->fill($data);
-            $resource->save();
-            $resource->refresh();
-            Evidence::query()->create(['resource_id' => $resource->id, 'resource_type' => $model]);
-        });
+        $model = $this->resourcesModels[$type]['model_namespace'];
+        DB::transaction(
+            function () use ($model, $data) {
+                $resource = new $model();
+                $resource->fill($data);
+                $resource->save();
+                $resource->refresh();
+                Evidence::query()->create(['resource_id' => $resource->id, 'resource_type' => $model]);
+            }
+        );
 //        $resource = null;
         // INSERT dump() dd()
         //dump($data);
