@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(
             [
-                EvidenceTypeSeeder::class,
                 DecisionSeeder::class,
                 DivisionsSeeder::class,
                 AppearancesSeeder::class

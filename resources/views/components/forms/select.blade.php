@@ -1,9 +1,9 @@
 <select class="form-select" id="actionSelect" name="type_evidence">
     @foreach($options as $option)
-        @if($selected == $option->id)
-            <option value="{{$option->id}}" selected>{{$option->name}}</option>
+        @if($selected == $option['id'])
+            <option value="{{$option['id']}}" selected>{{$option['name']}}</option>
         @else
-            <option value="{{$option->id}}">{{$option->name}}</option>
+            <option value="{{$option['id']}}">{{$option['name']}}</option>
         @endif
     @endforeach
 </select>
