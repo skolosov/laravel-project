@@ -40,8 +40,8 @@
                 <x-forms.input input-type="text" name-input="release_date" label-title="Год выпуска"
                                placeholder="Год выпуска"/>
             @elseif($type == 6)
-                <x-forms.input input-type="text" name-input="unit_name" label-title="Имя устройства"
-                               placeholder="Имя устройства"></x-forms.input>
+                <x-forms.input input-type="text" name-input="unit_name" label-title="Единицы измерения"
+                               placeholder="Единицы измерения"></x-forms.input>
                 <x-forms.input input-type="text" name-input="designation" label-title="Наименование"
                                placeholder="Наименование"/>
                 <x-forms.input input-type="text" name-input="quantity" label-title="Количество"

@@ -49,6 +49,19 @@ class EvidenceController extends Controller
         );
     }
 
+    public function edit($id)
+    {
+        $item = Evidence::query()->with('resource')->find($id);
+        $type = Arr::first(
+            $this->resourcesModels,
+            fn($typeRow) => $typeRow['model_namespace'] === $item->resource_type
+        )['id'];
+        return view(
+            'evidence-edit',
+            ['method' => 'post', 'type' => $type ?? 1, 'evidence' => $item]
+        );
+    }
+
     public function store(Request $request)
     {
         $data = $request->all();
