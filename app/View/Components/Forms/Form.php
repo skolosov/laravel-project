@@ -8,15 +8,18 @@ use Illuminate\View\Component;
 class Form extends Component
 {
     public string $method;
+    public string $methodAttribute;
     public string $action;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($method, $action)
+    public function __construct($method, $action, $methodAttribute = '')
     {
         $this->method = $method;
+        $this->methodAttribute = $methodAttribute;
         $this->action = $action;
     }
 

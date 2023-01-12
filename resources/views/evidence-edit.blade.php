@@ -2,8 +2,8 @@
 @section('content')
     <div class="container">
         <h1>Вещественные доказательства</h1>
-        @dump($evidence)
-        <x-forms.form method="patch" action="{{route('evidences.update',['id'=>$evidence->id])}}">
+{{--        @dump($evidence)--}}
+        <x-forms.form method="post" method-attribute="patch" action="{{route('evidences.update',['id'=>$evidence->id])}}">
             <x-forms.input input-type="text" name-input="name"
                            label-title="Наименование вещественного доказательства"
                            placeholder="Наименование вещественного доказательства"

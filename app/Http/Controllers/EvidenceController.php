@@ -62,6 +62,52 @@ class EvidenceController extends Controller
         );
     }
 
+    public function update(Request $request,$id)
+    {
+        $data = Evidence::query()->with('resource')->find($id);
+        //$resource=$item->resource;
+        //dd($resource);
+        dump($data,$request);
+        //$resource = request('name');
+
+
+//        $data->resource()->associate($request)->save();
+        $data->resource()->save($request);
+//        $data->resource()->save($resource);
+        $data->save();
+        $data->refresh();
+//        //post->comments()->save($comment);
+
+
+//        $data = Evidence::query()->find($id);
+//        $type = Arr::pull($data, 'resource_type');
+//        dd($type);
+//        //$model = $this->resourcesModels[$type]['model_namespace'];
+//        //dd($model);
+//
+//        DB::transaction(
+//            function () use ($type, $data) {
+//                $resource = new $type();
+//                $resource->fill($data);
+//                $resource->save();
+//                $resource->refresh();
+//            }
+//        );
+        return redirect(route('evidences'));
+    }
+
+    public function destroy($id)
+    {
+        DB::transaction(
+            function () use ($id) {
+                $item = Evidence::query()->find($id);
+                $item->resource()->delete();
+                $item->delete();
+            }
+        );
+        return redirect(route('evidences'));
+    }
+
     public function store(Request $request)
     {
         $data = $request->all();

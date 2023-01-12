@@ -33,5 +33,5 @@ Route::get('evidences',[EvidenceController::class,'index'])->name('evidences');
 Route::get('evidences/create',[EvidenceController::class,'create'])->name('evidences.create');
 Route::get('evidences/{id}/edit',[EvidenceController::class,'edit'])->name('evidences.edit');
 Route::post('evidences',[EvidenceController::class,'store'])->name('evidences.store');
-Route::patch('evidences/{id}',[EvidenceController::class,'update'])->name('evidences.update');
-Route::delete('evidences/{id}',[EvidenceController::class,'destroy'])->name('evidences.destroy');
+Route::patch('evidences/{id}/update',[EvidenceController::class,'update'])->name('evidences.update');
+Route::delete('evidences/{id}/destroy',[EvidenceController::class,'destroy'])->name('evidences.destroy');

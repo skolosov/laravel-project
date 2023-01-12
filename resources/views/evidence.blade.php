@@ -36,6 +36,11 @@
                             <x-forms.button>Изменить</x-forms.button>
                         </x-forms.form>
                     </td>
+                    <td>
+                        <x-forms.form method="post" method-attribute="delete" action="{{route('evidences.destroy',['id'=>$item->id])}}">
+                            <x-forms.button>&#10006</x-forms.button>
+                        </x-forms.form>
+                    </td>
                 </tr>
             @endforeach
             </tbody>
