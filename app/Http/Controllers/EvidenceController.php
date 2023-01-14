@@ -62,37 +62,41 @@ class EvidenceController extends Controller
         );
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        $data = Evidence::query()->with('resource')->find($id);
+        //$data = Evidence::query()->with('resource')->find($id);
         //$resource=$item->resource;
         //dd($resource);
-        dump($data,$request);
+        //dump($data,$request);
         //$resource = request('name');
 
 
 //        $data->resource()->associate($request)->save();
-        $data->resource()->save($request);
+//        $data->resource()->save($request);
 //        $data->resource()->save($resource);
-        $data->save();
-        $data->refresh();
+//        $data->save();
+//        $data->refresh();
 //        //post->comments()->save($comment);
 
 
-//        $data = Evidence::query()->find($id);
-//        $type = Arr::pull($data, 'resource_type');
-//        dd($type);
-//        //$model = $this->resourcesModels[$type]['model_namespace'];
-//        //dd($model);
-//
-//        DB::transaction(
-//            function () use ($type, $data) {
-//                $resource = new $type();
-//                $resource->fill($data);
-//                $resource->save();
-//                $resource->refresh();
-//            }
-//        );
+        //$data = Evidence::query()->find($id);
+        $data = Evidence::query()->with('resource')->find($id);
+        $type = Arr::first(
+            $this->resourcesModels,
+            fn($typeRow) => $typeRow['model_namespace'] === $data->resource_type
+        )['model_namespace'];
+
+
+        DB::transaction(
+            function () use ($type, $request, $data) {
+                $resource = new $type();
+                $resource->fill($data);
+                $resource->save();
+                //$data->save($resource);
+                //$resource->refresh();
+                //Evidence::query()->create(['resource_id' => $resource->id, 'resource_type' => $type]);
+            }
+        );
         return redirect(route('evidences'));
     }
 
