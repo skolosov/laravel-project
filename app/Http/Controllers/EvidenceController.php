@@ -64,8 +64,16 @@ class EvidenceController extends Controller
 
     public function update(Request $request, $id)
     {
+        $data = $request->all();
+        //$resource = Evidence::query()->find($id)->resource()->save($data);
+        $resource = Evidence::query()->find($id)->resource;
+        $resource->update($data);
+        $resource->refresh();
+        //dd($data,$resource);
+        //$resource->update($data->all());
+
         //$data = Evidence::query()->with('resource')->find($id);
-        //$resource=$item->resource;
+        //$resource=$data->resource;
         //dd($resource);
         //dump($data,$request);
         //$resource = request('name');
@@ -80,23 +88,24 @@ class EvidenceController extends Controller
 
 
         //$data = Evidence::query()->find($id);
-        $data = Evidence::query()->with('resource')->find($id);
-        $type = Arr::first(
-            $this->resourcesModels,
-            fn($typeRow) => $typeRow['model_namespace'] === $data->resource_type
-        )['model_namespace'];
+        //$data = Evidence::query()->find($id);
 
-
-        DB::transaction(
-            function () use ($type, $request, $data) {
-                $resource = new $type();
-                $resource->fill($data);
-                $resource->save();
-                //$data->save($resource);
-                //$resource->refresh();
-                //Evidence::query()->create(['resource_id' => $resource->id, 'resource_type' => $type]);
-            }
-        );
+        //dd($data,$request);
+//        $type = Arr::first(
+//            $this->resourcesModels,
+//            fn($typeRow) => $typeRow['model_namespace'] === $data->resource_type
+//        )['model_namespace'];
+//        //$model = $this->resourcesModels[$type]['model_namespace'];
+//        $resource = $data->resource();
+//        dd($resource);
+//        DB::transaction(
+//            function () use ($resource,$request) {
+//                //$resource->fill($request);
+//                //$resource->save();
+//                //$resource->refresh();
+//                Evidence::query()->update();
+//            }
+//        );
         return redirect(route('evidences'));
     }
 
