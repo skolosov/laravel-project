@@ -67,8 +67,13 @@ class EvidenceController extends Controller
         $data = $request->all();
         //$resource = Evidence::query()->find($id)->resource()->save($data);
         $resource = Evidence::query()->find($id)->resource;
-        $resource->update($data);
-        $resource->refresh();
+        DB::transaction(
+            function () use ($resource, $data) {
+                $resource->update($data);
+                $resource->refresh();
+            }
+        );
+
         //dd($data,$resource);
         //$resource->update($data->all());
 

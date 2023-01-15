@@ -33,7 +33,7 @@
                     </td>
                     <td>
                         <x-forms.form method="get" action="{{route('evidences.edit',['id'=>$item->id])}}">
-                            <x-forms.button>Изменить</x-forms.button>
+                            <x-forms.button>&#9998</x-forms.button>
                         </x-forms.form>
                     </td>
                     <td>
