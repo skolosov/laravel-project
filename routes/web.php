@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     if (Auth::check()) {
-        return redirect(route('home'));
+        return redirect(route('evidences'));
     }
     return view('welcome');
 });
@@ -37,7 +37,13 @@ Route::get('test', function () {
 
     return view('test', ['data' => $data]);
 });
-Route::resource('evidences', EvidenceController::class);
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/evidence-form', [EvidenceFormController::class, 'getForm'])->name('evidence-form');
-Route::get('/evidences', [EvidenceController::class, 'index'])->name('evidences');;
+//Route::resource('evidences', EvidenceController::class);
+//Route::get('/home', [HomeController::class, 'index'])->name('home');
+//Route::get('/evidence-form', [EvidenceFormController::class, 'getForm'])->name('evidence-form');
+//Route::get('/evidences', [EvidenceController::class, 'index'])->name('evidences');;
+Route::get('evidences',[EvidenceController::class,'index'])->name('evidences');
+Route::get('evidences/create',[EvidenceController::class,'create'])->name('evidences.create');
+Route::get('evidences/{id}/edit',[EvidenceController::class,'edit'])->name('evidences.edit');
+Route::post('evidences',[EvidenceController::class,'store'])->name('evidences.store');
+Route::patch('evidences/{id}/update',[EvidenceController::class,'update'])->name('evidences.update');
+Route::delete('evidences/{id}/destroy',[EvidenceController::class,'destroy'])->name('evidences.destroy');

@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <h1>Вещественные доказательства</h1>
-        <x-forms.form method="get" action="{{route('evidence-form')}}">
+        <x-forms.form method="get" action="{{route('evidences.create')}}">
             {{-- get $types from EvidenceFormController and set $options=$types ($types it's a result of select * from evidence_type--}}
             <x-forms.select :options="$types" :selected="$type"/>
         </x-forms.form>
@@ -40,8 +40,8 @@
                 <x-forms.input input-type="text" name-input="release_date" label-title="Год выпуска"
                                placeholder="Год выпуска"/>
             @elseif($type == 6)
-                <x-forms.input input-type="text" name-input="unit_name" label-title="Имя устройства"
-                               placeholder="Имя устройства"></x-forms.input>
+                <x-forms.input input-type="text" name-input="unit_name" label-title="Единицы измерения"
+                               placeholder="Единицы измерения"></x-forms.input>
                 <x-forms.input input-type="text" name-input="designation" label-title="Наименование"
                                placeholder="Наименование"/>
                 <x-forms.input input-type="text" name-input="quantity" label-title="Количество"
