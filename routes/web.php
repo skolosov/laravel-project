@@ -25,6 +25,18 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('test', function () {
+    $data = [
+        ['title' => 'title1', 'text' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, aspernatur consequatur culpa laboriosam natus numquam soluta. Accusamus aperiam eius enim, esse ipsa iure nihil, nisi numquam porro quas quidem voluptates?'],
+        ['title' => 'title2', 'text' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, aspernatur consequatur culpa laboriosam natus numquam soluta. Accusamus aperiam eius enim, esse ipsa iure nihil, nisi numquam porro quas quidem voluptates?'],
+        ['title' => 'title3', 'text' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, aspernatur consequatur culpa laboriosam natus numquam soluta. Accusamus aperiam eius enim, esse ipsa iure nihil, nisi numquam porro quas quidem voluptates?'],
+        ['title' => 'title4', 'text' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, aspernatur consequatur culpa laboriosam natus numquam soluta. Accusamus aperiam eius enim, esse ipsa iure nihil, nisi numquam porro quas quidem voluptates?'],
+        ['title' => 'title5', 'text' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, aspernatur consequatur culpa laboriosam natus numquam soluta. Accusamus aperiam eius enim, esse ipsa iure nihil, nisi numquam porro quas quidem voluptates?'],
+
+    ];
+
+    return view('test', ['data' => $data]);
+});
 Route::resource('evidences', EvidenceController::class);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/evidence-form', [EvidenceFormController::class, 'getForm'])->name('evidence-form');
