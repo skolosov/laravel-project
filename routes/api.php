@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('evi', [EvidenceController::class, 'getEvi']);
+
 //Route::get('evidences/', [EvidenceController::class, 'index']);
 //Route::get('evidences/{id}', [EvidenceController::class, 'show']);
 //Route::post('evidences', [EvidenceController::class, 'store']);
