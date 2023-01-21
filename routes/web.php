@@ -3,6 +3,7 @@
 use App\Http\Controllers\EvidenceFormController;
 use App\Http\Controllers\EvidenceController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StorageLocationController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -35,3 +36,5 @@ Route::get('evidences/{id}/edit',[EvidenceController::class,'edit'])->name('evid
 Route::post('evidences',[EvidenceController::class,'store'])->name('evidences.store');
 Route::patch('evidences/{id}/update',[EvidenceController::class,'update'])->name('evidences.update');
 Route::delete('evidences/{id}/destroy',[EvidenceController::class,'destroy'])->name('evidences.destroy');
+
+Route::get('storageLocation',[StorageLocationController::class,'index'])->name('storageLocation');

@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Evidence\Alcohol;
-use App\Models\Evidence\Evidence;
-use App\Models\Evidence\EvidenceType;
-use App\Models\Evidence\ReferenceType;
-use App\Models\Evidence\Weapon;
+use App\Models\Evidence\Resources\Alcohol;
+use App\Models\Evidence\Resources\Evidence;
+use App\Models\Evidence\Resources\Weapon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;

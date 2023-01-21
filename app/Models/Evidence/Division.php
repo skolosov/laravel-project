@@ -3,6 +3,7 @@
 namespace App\Models\Evidence;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Evidence\StorageLocation;
 /**
  * Class Division
  * @package App\Models\Evidence
@@ -18,4 +19,9 @@ class Division extends Model
         'name',
     ];
     public $timestamps = false;
+
+    public function storage_locations(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany('StorageLocation');
+    }
 }
