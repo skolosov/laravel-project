@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\EvidenceFormController;
 use App\Http\Controllers\EvidenceController;
 use App\Http\Controllers\HomeController;
@@ -37,4 +38,6 @@ Route::post('evidences',[EvidenceController::class,'store'])->name('evidences.st
 Route::patch('evidences/{id}/update',[EvidenceController::class,'update'])->name('evidences.update');
 Route::delete('evidences/{id}/destroy',[EvidenceController::class,'destroy'])->name('evidences.destroy');
 
-Route::get('storageLocation',[StorageLocationController::class,'index'])->name('storageLocation');
+Route::get('storage-location',[StorageLocationController::class,'index'])->name('storageLocation.index');
+Route::post('storage-location',[StorageLocationController::class,'store'])->name('storageLocation.store');
+Route::get('division',[DivisionController::class,'index'])->name('division.index');

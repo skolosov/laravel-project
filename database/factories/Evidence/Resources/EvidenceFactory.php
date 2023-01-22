@@ -2,7 +2,6 @@
 
 namespace Database\Factories\Evidence\Resources;
 
-use App\Models\Evidence\EvidenceType;
 use App\Models\Evidence\Resources\Alcohol;
 use App\Models\Evidence\Resources\Drug;
 use App\Models\Evidence\Resources\Evidence;
@@ -10,6 +9,7 @@ use App\Models\Evidence\Resources\Money;
 use App\Models\Evidence\Resources\OtherEvidence;
 use App\Models\Evidence\Resources\Transport;
 use App\Models\Evidence\Resources\Weapon;
+use App\Models\Evidence\StorageLocation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -37,9 +37,11 @@ class EvidenceFactory extends Factory
         $resourceType = $this->faker->randomElement($resources);
         $resource = $resourceType::factory();
 
+
         return [
             'resource_id' => $resource,
             'resource_type' => $resourceType,
+            'storage_location_id' => StorageLocation::factory()
         ];
     }
 }

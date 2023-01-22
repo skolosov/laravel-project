@@ -18,5 +18,11 @@ class DivisionsSeeder extends Seeder
         Division::query()->create(
             ['name' => 'СО ОМВД Володарский']
         );
+        Division::query()->create(
+            ['name' => 'ГУ МВД России НН']
+        );
+        Division::query()->create(
+            ['name' => 'УВД по г.НН']
+        );
     }
 }

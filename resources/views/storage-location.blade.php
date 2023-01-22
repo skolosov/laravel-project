@@ -1,10 +1,12 @@
 @extends('layouts.app')
 @section('content')
+    <div>
+        <a href="{{route('storageLocation.store')}}">Создать новое место хранения</a>
+    </div>
     <div class="container">
-        <x-forms.button>Submit</x-forms.button>
         <h1>Места хранения</h1>
-        @dump($storageLocation)
-        <table class="table">
+        {{--        @dump($storageLocation)--}}
+        <table class="table" id="table_storage_location">
             <thead>
             <tr>
                 <th scope="col">№ п\п</th>
@@ -14,13 +16,22 @@
             </thead>
             <tbody>
             @foreach($storageLocation as $key=>$item)
-                <tr onclick="window.location.href='{{route('evidences')}}'; return false">
+                <tr data-href="{{route('evidences',['storageId' => $item->id])}}">
                     <td>{{$item->id}}</td>
                     <td>{{$item->name}}</td>
-                    <td>{{$item->evidances_count}}</td>
+                    <td>{{$item->evidences_count}}</td>
                 </tr>
             @endforeach
             </tbody>
         </table>
     </div>
+    <script>
+        const table = document.querySelector('#table_storage_location');
+        const rows = table.querySelectorAll('tr[data-href]');
+        for (const row of rows) {
+            row.addEventListener('click', () => {
+                document.location = row.getAttribute("data-href")
+            });
+        }
+    </script>
 @endsection

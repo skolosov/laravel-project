@@ -18,7 +18,13 @@ return new class extends Migration {
                 $table->id();
                 $table->integer('resource_id')->index()->comment('Ссылка на строку в таблице ресурса');
                 $table->string('resource_type')->index()->comment('Тип таблицы');
+                $table->unsignedBigInteger('storage_location_id')->comment('Место хранения');
+                $table->foreign('storage_location_id')
+                    ->references('id')->on('storage_locations')
+                    ->onDelete('cascade');
+
                 $table->timestamps();
+                $table->softDeletes();
             }
         );
     }

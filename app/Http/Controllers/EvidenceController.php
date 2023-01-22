@@ -38,13 +38,17 @@ class EvidenceController extends Controller
         );
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        //return Evidence::with('resource')->get();
+        $storageId = $request->get('storageId');
+        $evidencesBuilder = Evidence::with('resource');
+        $storageId && $evidencesBuilder->where('storage_location_id',$storageId);
+        $evidencesArray = $evidencesBuilder->get();
+
         return view(
             'evidence',
             [
-                'evidencesArray' => Evidence::with('resource')->get()
+                'evidencesArray' => $evidencesArray
             ]
         );
     }

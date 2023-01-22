@@ -13,7 +13,6 @@ use App\Models\Evidence\Division;
  * @package App\Models\Evidence
  *
  * @property int id
- * @property int evidence_id
  * @property string name
  * @property int division_id
  * @property string created_at
@@ -21,35 +20,22 @@ use App\Models\Evidence\Division;
  */
 class StorageLocation extends Model
 {
+    use HasFactory;
+
     protected $table = 'storage_locations';
 
     protected $fillable = [
-        'evidence_id',
         'name',
         'division_id',
     ];
 
-//    public function evidence(): MorphOne
-//    {
-//        return $this->morphOne(Evidence::class, 'storage_location',  'evidence_id');
-//    }
-
-
     public function evidences(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Resources\Evidence::class, 'id', 'evidence_id');
-//        return $this->hasMany(Resources\Evidence::class);
+        return $this->hasMany(Evidence::class, 'storage_location_id', 'id');
     }
 
-//    public function countEvidences(): int
-//    {
-//        return $this->hasMany(Resources\Evidence::class, 'id', 'evidence_id')->count();
-//    }
-
-//    public function division(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-//    {
-////        return $this->morphOne(Evidence::class, 'resource', 'resource_type', 'resource_id');
-//        return $this->belongsTo(Division::class);
-////        return $this->hasOne('Division','id','division_id');
-//    }
+    public function division(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Division::class,'division_id','id');
+    }
 }
