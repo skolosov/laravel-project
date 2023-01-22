@@ -46,4 +46,9 @@ class Evidence extends Model
     {
         return $this->morphTo();
     }
+
+    public function storage_location(): BelongsTo
+    {
+        return $this->belongsTo('Resources\StorageLocation');
+    }
 }

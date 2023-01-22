@@ -40,7 +40,7 @@
                 <x-forms.input input-type="text" name-input="unit_name" label-title="Единицы измерения"
                                placeholder="Единицы измерения" value="{{$evidence->resource->unit_name ?? ''}}"></x-forms.input>
                 <x-forms.input input-type="text" name-input="designation" label-title="Наименование"
-                               placeholder="Наименование" value="{{$evidence->resource->designation ?? ''}}"/>
+                               placeholder="Наименование" value="{{$evidence->resource->designation ?? ''}}"></x-forms.input>
                 <x-forms.input input-type="text" name-input="quantity" label-title="Количество"
                                placeholder="Количество" value="{{$evidence->resource->quantity ?? ''}}"/>
                 <x-forms.input input-type="text" name-input="amount" label-title="Сумма" placeholder="Сумма" value="{{$evidence->resource->amount ?? ''}}"/>
