@@ -1,26 +1,15 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <x-forms.button>Submit</x-forms.button>
-        <h1>Места хранения</h1>
-        @dump($storageLocation)
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">№ п\п</th>
-                <th scope="col">Наименование</th>
-                <th scope="col">Кол-во хранимых вещественных доказательств</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($storageLocation as $key=>$item)
-                <tr onclick="window.location.href='{{route('evidences')}}'; return false">
-                    <td>{{$item->id}}</td>
-                    <td>{{$item->name}}</td>
-{{--                    <td>{{$storageLocationEvidencesCount}}</td>--}}
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
+        <h1>Место хранения</h1>
+        <x-forms.form method="post" action="{{route('storageLocation.store')}}">
+            <x-forms.input input-type="text" name-input="name"
+                           label-title="Наименование места хранения"
+                           placeholder="Наименование места хранения"/>
+            <x-forms.form method="get" action="{{route('divisions.index')}}">
+                <x-forms.select :options="$types" :selected="$type"/>
+            </x-forms.form>
+            <x-forms.button>Submit</x-forms.button>
+        </x-forms.form>
     </div>
 @endsection

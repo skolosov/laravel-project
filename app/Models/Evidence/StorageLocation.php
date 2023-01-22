@@ -33,15 +33,23 @@ class StorageLocation extends Model
 //    {
 //        return $this->morphOne(Evidence::class, 'storage_location',  'evidence_id');
 //    }
+
+
     public function evidences(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Resources\Evidence::class, 'id', 'evidence_id');
+//        return $this->hasMany(Resources\Evidence::class);
     }
 
-    public function division(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-//        return $this->morphOne(Evidence::class, 'resource', 'resource_type', 'resource_id');
-        return $this->belongsTo(Division::class);
-//        return $this->hasOne('Division','id','division_id');
-    }
+//    public function countEvidences(): int
+//    {
+//        return $this->hasMany(Resources\Evidence::class, 'id', 'evidence_id')->count();
+//    }
+
+//    public function division(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+//    {
+////        return $this->morphOne(Evidence::class, 'resource', 'resource_type', 'resource_id');
+//        return $this->belongsTo(Division::class);
+////        return $this->hasOne('Division','id','division_id');
+//    }
 }
