@@ -39,5 +39,8 @@ Route::patch('evidences/{id}/update',[EvidenceController::class,'update'])->name
 Route::delete('evidences/{id}/destroy',[EvidenceController::class,'destroy'])->name('evidences.destroy');
 
 Route::get('storage-location',[StorageLocationController::class,'index'])->name('storageLocation.index');
+Route::get('storage-location/create',[StorageLocationController::class,'create'])->name('storageLocation.create');
+Route::get('storage-location/{id}/edit',[StorageLocationController::class,'edit'])->name('storageLocation.edit');
 Route::post('storage-location',[StorageLocationController::class,'store'])->name('storageLocation.store');
-Route::get('division',[DivisionController::class,'index'])->name('division.index');
+Route::patch('storage-location/{id}/update',[StorageLocationController::class,'update'])->name('storageLocation.update');
+Route::delete('storage-location/{id}/destroy',[StorageLocationController::class,'destroy'])->name('storageLocation.destroy');

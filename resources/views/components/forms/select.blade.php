@@ -1,4 +1,4 @@
-<select class="form-select" id="actionSelect" name="type_evidence">
+<select class="form-select" id="actionSelect" name="{{$name}}">
     @foreach($options as $option)
         @if($selected == $option['id'])
             <option value="{{$option['id']}}" selected>{{$option['name']}}</option>
@@ -7,12 +7,14 @@
         @endif
     @endforeach
 </select>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const select = document.querySelector('#actionSelect');
-        const onChange = (e) => {
-            e.target.parentNode.submit();
-        }
-        select.addEventListener('change', onChange);
-    });
-</script>
+@if($isSubmit)
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const select = document.querySelector('#actionSelect');
+            const onChange = (e) => {
+                e.target.parentNode.submit();
+            }
+            select.addEventListener('change', onChange);
+        });
+    </script>
+@endif
