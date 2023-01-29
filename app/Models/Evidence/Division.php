@@ -2,8 +2,9 @@
 
 namespace App\Models\Evidence;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Evidence\StorageLocation;
+
 /**
  * Class Division
  * @package App\Models\Evidence
@@ -13,6 +14,8 @@ use App\Models\Evidence\StorageLocation;
  */
 class Division extends Model
 {
+    use HasFactory;
+
     protected $table = 'divisions';
 
     protected $fillable = [
@@ -20,8 +23,8 @@ class Division extends Model
     ];
     public $timestamps = false;
 
-    public function storage_locations(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function storageLocations(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany('StorageLocation');
+        return $this->hasMany(StorageLocation::class,'division_id','id');
     }
 }

@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
 {{--        @dump($evidencesArray)--}}
-        <table class="table">
+        <table class="table table-hover">
             <thead>
             <tr>
                 <th scope="col">№ п\п</th>

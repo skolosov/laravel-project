@@ -8,15 +8,20 @@ class Select extends Component
 {
     public $options;
     public $selected;
+    public bool $isSubmit;
+    public string $name;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($options, $selected)
+    public function __construct($options, $selected, $isSubmit = true, $name = "type_evidence")
     {
         $this->options = $options;
         $this->selected = $selected;
+        $this->isSubmit = $isSubmit;
+        $this->name = $name;
     }
 
     /**

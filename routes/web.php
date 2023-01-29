@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\EvidenceFormController;
 use App\Http\Controllers\EvidenceController;
 use App\Http\Controllers\HomeController;
@@ -49,4 +50,9 @@ Route::post('evidences',[EvidenceController::class,'store'])->name('evidences.st
 Route::patch('evidences/{id}/update',[EvidenceController::class,'update'])->name('evidences.update');
 Route::delete('evidences/{id}/destroy',[EvidenceController::class,'destroy'])->name('evidences.destroy');
 
-Route::get('storageLocation',[StorageLocationController::class,'index'])->name('storageLocation');
+Route::get('storage-location',[StorageLocationController::class,'index'])->name('storageLocation.index');
+Route::get('storage-location/create',[StorageLocationController::class,'create'])->name('storageLocation.create');
+Route::get('storage-location/{id}/edit',[StorageLocationController::class,'edit'])->name('storageLocation.edit');
+Route::post('storage-location',[StorageLocationController::class,'store'])->name('storageLocation.store');
+Route::patch('storage-location/{id}/update',[StorageLocationController::class,'update'])->name('storageLocation.update');
+Route::delete('storage-location/{id}/destroy',[StorageLocationController::class,'destroy'])->name('storageLocation.destroy');
