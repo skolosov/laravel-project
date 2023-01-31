@@ -1,6 +1,13 @@
 @extends('layouts.app')
+{{--@extends('two_div.app')--}}
+<link rel="stylesheet" href="{{ asset('resources/css/two_div.css') }}">
 @section('content')
     <div class="container">
+        <div class="wrap">
+            <div class="left"><a href="#">Левый блок</a></div>
+            <div class="right"><a href="#">Правый блок</a></div>
+        </div>
+
         <h1>Вещественные доказательства</h1>
 {{--        @dump($evidence)--}}
         <x-forms.form method="post" method-attribute="patch" action="{{route('evidences.update',['id'=>$evidence->id])}}">

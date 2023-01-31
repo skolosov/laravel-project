@@ -1,0 +1,19 @@
+.wrap {
+    width: 500px;
+    background: #555;
+    height: 500px;
+}
+.left, .right {
+    display: inline-block;
+    //display: inline;
+    //zoom: 1;
+    width: 100%;
+    margin-right: -100%;
+    vertical-align: bottom;
+}
+.right {
+    text-align: right;
+}
+.left a, .right a { display: inline-block; position: relative; }
+.left a { width: 200px; height: 100px; background: green; }
+.right a { width: 100px; height: 200px; background: pink; }

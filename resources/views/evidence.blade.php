@@ -1,8 +1,12 @@
 @extends('layouts.app')
-
 @section('content')
+
     <div class="container">
-{{--        @dump($evidencesArray)--}}
+        {{--        @dump($evidencesArray)--}}
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a class="btn btn-secondary" href="{{route('evidences.create')}}">Создать новое вещественное
+                доказательство</a>
+        </div>
         <table class="table table-hover">
             <thead>
             <tr>
@@ -37,7 +41,8 @@
                         </x-forms.form>
                     </td>
                     <td>
-                        <x-forms.form method="post" method-attribute="delete" action="{{route('evidences.destroy',['id'=>$item->id])}}">
+                        <x-forms.form method="post" method-attribute="delete"
+                                      action="{{route('evidences.destroy',['id'=>$item->id])}}">
                             <x-forms.button>&#10006</x-forms.button>
                         </x-forms.form>
                     </td>
@@ -46,4 +51,5 @@
             </tbody>
         </table>
     </div>
+
 @endsection

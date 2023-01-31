@@ -1,6 +1,15 @@
 @extends('layouts.app')
+{{--@extends('two_div.app')--}}
+<link rel="stylesheet" href="{{ asset('resources/css/two_div.css') }}">
 @section('content')
     <div class="container">
+        <div class="wrap">
+            <div class="left"><a href="#">Левый блок</a></div>
+            <div class="right"><a href="#">Правый блок</a></div>
+        </div>
+        <x-forms.form method="get" action="{{route('evidences.create')}}">
+            <x-forms.select :options="$types" :selected="$type"/>
+        </x-forms.form>
         <h1>Вещественные доказательства</h1>
         <x-forms.form method="get" action="{{route('evidences.create')}}">
             {{-- get $types from EvidenceFormController and set $options=$types ($types it's a result of select * from evidence_type--}}
