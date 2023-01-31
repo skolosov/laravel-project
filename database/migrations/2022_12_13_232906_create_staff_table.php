@@ -20,7 +20,10 @@ return new class extends Migration
             $table->foreign('post_id')->references('id')->on('posts');
             $table->integer('department_id')->comment('Служба\Подразделение\Организация');
             $table->foreign('department_id')->references('id')->on('departments');
+            $table->string('phone')->comment('Телефон должностного лица');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

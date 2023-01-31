@@ -24,6 +24,7 @@ return new class extends Migration {
                 $table->string('name')->comment('Место хранения');
 
                 $table->timestamps();
+                $table->softDeletes();
             }
         );
     }

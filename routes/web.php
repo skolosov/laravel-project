@@ -4,6 +4,7 @@ use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\EvidenceFormController;
 use App\Http\Controllers\EvidenceController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StorageLocationController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -56,3 +57,9 @@ Route::get('storage-location/{id}/edit',[StorageLocationController::class,'edit'
 Route::post('storage-location',[StorageLocationController::class,'store'])->name('storageLocation.store');
 Route::patch('storage-location/{id}/update',[StorageLocationController::class,'update'])->name('storageLocation.update');
 Route::delete('storage-location/{id}/destroy',[StorageLocationController::class,'destroy'])->name('storageLocation.destroy');
+
+Route::get('staff/create',[StaffController::class,'create'])->name('staff.create');
+Route::get('staff/{id}/edit',[StaffController::class,'edit'])->name('staff.edit');
+Route::post('staff',[StaffController::class,'store'])->name('staff.store');
+Route::patch('staff/{id}/update',[StaffController::class,'update'])->name('staff.update');
+Route::delete('staff/{id}/destroy',[StaffController::class,'destroy'])->name('staff.destroy');

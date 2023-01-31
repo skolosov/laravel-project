@@ -35,6 +35,7 @@ return new class extends Migration
             $table->string('doc_number')->nullable()->comment('Номер документа');
             $table->date('doc_date')->nullable()->comment('Дата документа');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -24,6 +24,7 @@ return new class extends Migration {
                 $table->date('date_ud')->comment('Дата возбуждения УД');
 
                 $table->timestamps();
+                $table->softDeletes();
             }
         );
     }

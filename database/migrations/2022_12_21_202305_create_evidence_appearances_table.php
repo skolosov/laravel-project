@@ -25,6 +25,7 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->string('condition')->nullable()->comment('Состояние упаковки');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

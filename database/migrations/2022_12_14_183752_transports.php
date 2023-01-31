@@ -24,6 +24,7 @@ return new class extends Migration {
                 $table->string('color')->nullable()->comment('Цвет');
                 $table->string('release_date')->nullable()->comment('Год выпуска');
                 $table->timestamps();
+                $table->softDeletes();
             }
         );
     }
