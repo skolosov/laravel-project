@@ -21,6 +21,7 @@ return new class extends Migration
                 $table->string('name')->comment('Вид алкоголь');
                 $table->integer('liter')->comment('Объем');
                 $table->timestamps();
+                $table->softDeletes();
             }
         );
     }

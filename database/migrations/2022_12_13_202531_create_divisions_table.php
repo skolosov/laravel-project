@@ -17,6 +17,8 @@ return new class extends Migration {
             function (Blueprint $table) {
                 $table->id();
                 $table->string('name')->comment('Подразделение');
+
+
             }
         );
     }

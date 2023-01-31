@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string( 'name')->comment('Служба\Подразделение');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

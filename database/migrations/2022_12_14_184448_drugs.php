@@ -21,6 +21,7 @@ return new class extends Migration
                 $table->string('name')->comment('Вид наркотиков');
                 $table->double('weight',12,5)->comment('Вес наркотиков');
                 $table->timestamps();
+                $table->softDeletes();
             }
         );
     }
