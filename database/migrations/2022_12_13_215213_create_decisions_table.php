@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string( 'name')->comment('Решение');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

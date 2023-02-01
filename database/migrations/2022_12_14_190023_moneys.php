@@ -21,6 +21,7 @@ return new class extends Migration
                 $table->string('name')->comment('Вид денег');
                 $table->double('amount',12,2)->comment('Сумма');
                 $table->timestamps();
+                $table->softDeletes();
             }
         );
     }

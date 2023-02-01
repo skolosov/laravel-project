@@ -24,6 +24,7 @@ return new class extends Migration {
                 $table->string('detail')->nullable()->comment('Деталь оружия');
                 $table->string('release_date')->nullable()->comment('Год выпуска оружия');
                 $table->timestamps();
+                $table->softDeletes();
             }
         );
     }

@@ -25,6 +25,7 @@ return new class extends Migration
                 $table->string('number')->nullable()->comment('Номер');
                 $table->string('designation')->nullable()->comment('Наименование');
                 $table->timestamps();
+                $table->softDeletes();
             }
         );
     }

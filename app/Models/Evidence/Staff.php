@@ -11,7 +11,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int id
  * @property string fio
  * @property int post_id
- * @property date department_id
+ * @property int department_id
+ * @property string phone
  * @property string created_at
  * @property string updated_at
  */
@@ -24,5 +25,6 @@ class Staff extends Model
         'fio',
         'post_id',
         'department_id',
+        'phone'
     ];
 }

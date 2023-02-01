@@ -10,18 +10,28 @@ class Select extends Component
     public $selected;
     public bool $isSubmit;
     public string $name;
+    public string $labelTitle;
+    public string $placeholder;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($options, $selected, $isSubmit = true, $name = "type_evidence")
-    {
+    public function __construct(
+        $options,
+        $selected,
+        $isSubmit = true,
+        $name = "type_evidence",
+        $labelTitle = "",
+        $placeholder = ""
+    ) {
         $this->options = $options;
         $this->selected = $selected;
         $this->isSubmit = $isSubmit;
         $this->name = $name;
+        $this->labelTitle = $labelTitle;
+        $this->placeholder = $placeholder;
     }
 
     /**
