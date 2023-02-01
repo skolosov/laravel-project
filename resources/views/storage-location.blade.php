@@ -1,11 +1,10 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
+    <div class="container h-100 w-100">
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <a class="btn btn-secondary" href="{{route('storageLocation.create')}}">Создать новое место хранения</a>
         </div>
         <h1>Места хранения</h1>
-        {{--        @dump($storageLocation)--}}
         <table class="table table-hover" id="table_storage_location">
             <thead>
             <tr>
@@ -44,4 +43,25 @@
             });
         }
     </script>
+{{--    <div class="container h-100 w-100">--}}
+{{--        <div class="card">--}}
+{{--            <div class="card-header">--}}
+{{--                <div class="row align-items-center align-content-between">--}}
+{{--                    <div class="col">--}}
+{{--                        <h3>Места хранения</h3>--}}
+{{--                    </div>--}}
+{{--                    <div class="col-3 d-flex justify-content-end">--}}
+{{--                        <storage-locations-create--}}
+{{--                            :divisions-options="{{$divisions}}"--}}
+{{--                        ></storage-locations-create>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="card-body p-2">--}}
+{{--                <storage-locations-table--}}
+{{--                    :data-rows="{{$storageLocation}}"--}}
+{{--                ></storage-locations-table>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 @endsection
