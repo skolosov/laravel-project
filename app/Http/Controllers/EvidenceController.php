@@ -38,11 +38,10 @@ class EvidenceController extends Controller
         );
     }
 
-    public function index(Request $request)
+    public function index(?int $id)
     {
-        $storageId = $request->get('storageId');
         $evidencesBuilder = Evidence::with('resource');
-        $storageId && $evidencesBuilder->where('storage_location_id',$storageId);
+        $id && $evidencesBuilder->where('storage_location_id',$id);
         $evidencesArray = $evidencesBuilder->get();
 
         return view(

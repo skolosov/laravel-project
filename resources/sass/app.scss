@@ -11,8 +11,16 @@
 
 @import "layout";
 
+@import 'ant-design-vue/dist/antd.css';
+
 html, body, #app {
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
+    //overflow: hidden;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
 }

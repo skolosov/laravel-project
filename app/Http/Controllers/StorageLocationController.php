@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Evidence\Resources\Evidence;
 use App\Models\Evidence\StorageLocation;
 use App\Models\Evidence\Division;
 use Illuminate\Http\Request;
@@ -12,8 +11,14 @@ class StorageLocationController extends Controller
     public function index()
     {
         $storageLocation = StorageLocation::withCount('evidences')->orderBy('id')->get();
+        $divisions = Division::all();
         //dd($storageLocation);
-        return view('storage-location', compact('storageLocation'));
+        return view('storage-location',
+                    [
+                        'storageLocation' => $storageLocation,
+                        'divisions' => $divisions,
+                    ]
+        );
     }
 
     public function create()
