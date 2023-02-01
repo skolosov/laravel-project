@@ -1,9 +1,6 @@
 <?php
 
-use App\Http\Controllers\DivisionController;
-use App\Http\Controllers\EvidenceFormController;
 use App\Http\Controllers\EvidenceController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StorageLocationController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -21,38 +18,28 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     if (Auth::check()) {
-        return redirect(route('evidences'));
+        return redirect(route('storageLocation.index'));
     }
     return view('welcome');
 });
 
 Auth::routes();
-Route::get('test', function () {
-    $data = [
-        ['title' => 'title1', 'text' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, aspernatur consequatur culpa laboriosam natus numquam soluta. Accusamus aperiam eius enim, esse ipsa iure nihil, nisi numquam porro quas quidem voluptates?'],
-        ['title' => 'title2', 'text' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, aspernatur consequatur culpa laboriosam natus numquam soluta. Accusamus aperiam eius enim, esse ipsa iure nihil, nisi numquam porro quas quidem voluptates?'],
-        ['title' => 'title3', 'text' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, aspernatur consequatur culpa laboriosam natus numquam soluta. Accusamus aperiam eius enim, esse ipsa iure nihil, nisi numquam porro quas quidem voluptates?'],
-        ['title' => 'title4', 'text' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, aspernatur consequatur culpa laboriosam natus numquam soluta. Accusamus aperiam eius enim, esse ipsa iure nihil, nisi numquam porro quas quidem voluptates?'],
-        ['title' => 'title5', 'text' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, aspernatur consequatur culpa laboriosam natus numquam soluta. Accusamus aperiam eius enim, esse ipsa iure nihil, nisi numquam porro quas quidem voluptates?'],
-
-    ];
-
-    return view('test', ['data' => $data]);
-});
 //Route::resource('evidences', EvidenceController::class);
 //Route::get('/home', [HomeController::class, 'index'])->name('home');
 //Route::get('/evidence-form', [EvidenceFormController::class, 'getForm'])->name('evidence-form');
-//Route::get('/evidences', [EvidenceController::class, 'index'])->name('evidences');;
-Route::get('evidences',[EvidenceController::class,'index'])->name('evidences');
-Route::get('evidences/create',[EvidenceController::class,'create'])->name('evidences.create');
-Route::get('evidences/{id}/edit',[EvidenceController::class,'edit'])->name('evidences.edit');
-Route::post('evidences',[EvidenceController::class,'store'])->name('evidences.store');
-Route::patch('evidences/{id}/update',[EvidenceController::class,'update'])->name('evidences.update');
-Route::delete('evidences/{id}/destroy',[EvidenceController::class,'destroy'])->name('evidences.destroy');
+//Route::get('/evidences', [EvidenceController::class, 'index'])->name('evidences');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('evidences/{id?}',[EvidenceController::class,'index'])->name('evidences');
+    Route::get('evidences/create',[EvidenceController::class,'create'])->name('evidences.create');
+    Route::get('evidences/{id}/edit',[EvidenceController::class,'edit'])->name('evidences.edit');
+    Route::post('evidences',[EvidenceController::class,'store'])->name('evidences.store');
+    Route::patch('evidences/{id}/update',[EvidenceController::class,'update'])->name('evidences.update');
+    Route::delete('evidences/{id}/destroy',[EvidenceController::class,'destroy'])->name('evidences.destroy');
 
-Route::get('storage-location',[StorageLocationController::class,'index'])->name('storageLocation.index');
-Route::get('storage-location/create',[StorageLocationController::class,'create'])->name('storageLocation.create');
-Route::get('storage-location/{id}/edit',[StorageLocationController::class,'edit'])->name('storageLocation.edit');
-Route::post('storage-location',[StorageLocationController::class,'store'])->name('storageLocation.store');
-Route::patch('storage-location/{id}/update',[StorageLocationController::class,'update'])->name('storageLocation.update');
-Route::delete('storage-location/{id}/destroy',[StorageLocationController::class,'destroy'])->name('storageLocation.destroy');
+    Route::get('storage-location',[StorageLocationController::class,'index'])->name('storageLocation.index');
+    Route::get('storage-location/create',[StorageLocationController::class,'create'])->name('storageLocation.create');
+    Route::get('storage-location/{id}/edit',[StorageLocationController::class,'edit'])->name('storageLocation.edit');
+    Route::post('storage-location',[StorageLocationController::class,'store'])->name('storageLocation.store');
+    Route::patch('storage-location/{id}/update',[StorageLocationController::class,'update'])->name('storageLocation.update');
+    Route::delete('storage-location/{id}/destroy',[StorageLocationController::class,'destroy'])->name('storageLocation.destroy');
+});

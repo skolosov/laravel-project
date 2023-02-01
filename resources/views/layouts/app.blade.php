@@ -19,7 +19,7 @@
 <body>
     <div id="app" class="relative bg-gray">
         @include('layouts.menu')
-        <main class="py-4">
+        <main class="py-4 w-100 h-100">
             @yield('content')
         </main>
     </div>
