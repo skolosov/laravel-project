@@ -3,6 +3,9 @@
 @section('content')
     <div class="container">
 {{--        @dump($evidencesArray)--}}
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a class="btn btn-secondary" href="{{route('evidences.create')}}">Создать новое вещественное доказательство</a>
+        </div>
         <table class="table table-hover">
             <thead>
             <tr>
