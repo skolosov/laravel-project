@@ -6,7 +6,8 @@
             <x-forms.input input-type="text" name-input="name"
                            label-title="ФИО"
                            placeholder="Фамилия Имя Отчество"/>
-            <x-forms.select :options="$posts" :selected="$post" :is-submit="false" name="post_id"/>
+            <x-forms.select :options="$posts" :selected="$post" :is-submit="false"
+                            name="post_id" label-title="Должность" placeholder="Должность"/>
             <x-forms.select :options="$departments" :selected="$department" :is-submit="false" name="department_id"/>
             <x-forms.input input-type="text" name-input="phone"
                            label-title="Телефон"

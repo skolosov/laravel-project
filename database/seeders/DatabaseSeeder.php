@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Evidence\Department;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,7 +19,9 @@ class DatabaseSeeder extends Seeder
             [
                 DecisionSeeder::class,
                 DivisionsSeeder::class,
-                AppearancesSeeder::class
+                AppearancesSeeder::class,
+                DepartmentSeeder::class,
+                PostsSeeder::class
             ]
         );
         // \App\Models\User::factory(10)->create();
