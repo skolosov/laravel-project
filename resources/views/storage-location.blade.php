@@ -15,7 +15,7 @@
             </thead>
             <tbody>
             @foreach($storageLocation as $key=>$item)
-                <tr data-href="{{route('evidences',['storageId' => $item->id])}}">
+                <tr data-href="{{route('evidences',$item->id)}}">
                     <td>{{$item->id}}</td>
                     <td>{{$item->name}}</td>
                     <td>{{$item->evidences_count}}</td>

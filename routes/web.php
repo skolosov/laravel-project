@@ -25,17 +25,13 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-//Route::resource('evidences', EvidenceController::class);
-//Route::get('/home', [HomeController::class, 'index'])->name('home');
-//Route::get('/evidence-form', [EvidenceFormController::class, 'getForm'])->name('evidence-form');
-//Route::get('/evidences', [EvidenceController::class, 'index'])->name('evidences');
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('evidences/{id?}',[EvidenceController::class,'index'])->name('evidences');
     Route::get('evidences/create',[EvidenceController::class,'create'])->name('evidences.create');
     Route::get('evidences/{id}/edit',[EvidenceController::class,'edit'])->name('evidences.edit');
     Route::post('evidences',[EvidenceController::class,'store'])->name('evidences.store');
     Route::patch('evidences/{id}/update',[EvidenceController::class,'update'])->name('evidences.update');
     Route::delete('evidences/{id}/destroy',[EvidenceController::class,'destroy'])->name('evidences.destroy');
+    Route::get('evidences/{id?}',[EvidenceController::class,'index'])->name('evidences');
 
     Route::get('storage-location',[StorageLocationController::class,'index'])->name('storageLocation.index');
     Route::get('storage-location/create',[StorageLocationController::class,'create'])->name('storageLocation.create');

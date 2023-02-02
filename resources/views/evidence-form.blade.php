@@ -2,19 +2,21 @@
 @section('content')
     <div class="container">
         <h1>Вещественные доказательства</h1>
-        <div class="wrap">
-            <div class="left"><a href="#">Левый блок</a></div>
-            <div class="right"><a href="#">Правый блок</a></div>
-        </div>
+        {{--        <div class="wrap">--}}
+        {{--            <div class="left"><a href="#">Левый блок</a></div>--}}
+        {{--            <div class="right"><a href="#">Правый блок</a></div>--}}
+        {{--        </div>--}}
         <x-forms.form method="get" action="{{route('evidences.create')}}">
             {{-- get $types from EvidenceFormController and set $options=$types ($types it's a result of select * from evidence_type--}}
             <x-forms.select :options="$types" :selected="$type"/>
         </x-forms.form>
-{{--        @dump($type)--}}
         <x-forms.form method="post" action="{{route('evidences.store')}}">
+
+            <x-forms.select :options="$storageLocations" :is-submit="false" name="storage_location_id"
+                            label-title="Место хранения"/>
             <x-forms.input input-type="text" name-input="name"
                            label-title="Наименование вещественного доказательства"
-                           placeholder="Наименование вещественного доказательства"/>
+                           placeholder="Наименование вещественного доказатльства"/>
             <x-forms.input input-type="hidden" name-input="resource_type" label-title="resource_type"
                            placeholder="resource_type" :value="$type"/>
             @if($type == 1)

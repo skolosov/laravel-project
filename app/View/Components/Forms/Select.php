@@ -11,7 +11,6 @@ class Select extends Component
     public bool $isSubmit;
     public string $name;
     public string $labelTitle;
-    public string $placeholder;
 
     /**
      * Create a new component instance.
@@ -20,18 +19,16 @@ class Select extends Component
      */
     public function __construct(
         $options,
-        $selected,
+        $selected = null,
         $isSubmit = true,
         $name = "type_evidence",
-        $labelTitle = "",
-        $placeholder = ""
+        $labelTitle = ""
     ) {
         $this->options = $options;
         $this->selected = $selected;
         $this->isSubmit = $isSubmit;
         $this->name = $name;
         $this->labelTitle = $labelTitle;
-        $this->placeholder = $placeholder;
     }
 
     /**

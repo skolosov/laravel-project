@@ -9,6 +9,7 @@ use App\Models\Evidence\Resources\Money;
 use App\Models\Evidence\Resources\OtherEvidence;
 use App\Models\Evidence\Resources\Transport;
 use App\Models\Evidence\Resources\Weapon;
+use App\Models\Evidence\StorageLocation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -34,14 +35,19 @@ class EvidenceController extends Controller
         $type = $request->get('type_evidence');
         return view(
             'evidence-form',
-            ['types' => $this->resourcesModels, 'method' => 'post', 'type' => $type ?? 1]
+            [
+                'types' => $this->resourcesModels,
+                'method' => 'post',
+                'type' => $type ?? 1,
+                'storageLocations' => StorageLocation::all()
+            ]
         );
     }
 
     public function index(?int $id)
     {
         $evidencesBuilder = Evidence::with('resource');
-        $id && $evidencesBuilder->where('storage_location_id',$id);
+        $id && $evidencesBuilder->where('storage_location_id', $id);
         $evidencesArray = $evidencesBuilder->get();
 
         return view(
@@ -68,7 +74,6 @@ class EvidenceController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
-        //$resource = Evidence::query()->find($id)->resource()->save($data);
         $resource = Evidence::query()->find($id)->resource;
         DB::transaction(
             function () use ($resource, $data) {
@@ -77,43 +82,7 @@ class EvidenceController extends Controller
             }
         );
 
-        //dd($data,$resource);
-        //$resource->update($data->all());
 
-        //$data = Evidence::query()->with('resource')->find($id);
-        //$resource=$data->resource;
-        //dd($resource);
-        //dump($data,$request);
-        //$resource = request('name');
-
-
-//        $data->resource()->associate($request)->save();
-//        $data->resource()->save($request);
-//        $data->resource()->save($resource);
-//        $data->save();
-//        $data->refresh();
-//        //post->comments()->save($comment);
-
-
-        //$data = Evidence::query()->find($id);
-        //$data = Evidence::query()->find($id);
-
-        //dd($data,$request);
-//        $type = Arr::first(
-//            $this->resourcesModels,
-//            fn($typeRow) => $typeRow['model_namespace'] === $data->resource_type
-//        )['model_namespace'];
-//        //$model = $this->resourcesModels[$type]['model_namespace'];
-//        $resource = $data->resource();
-//        dd($resource);
-//        DB::transaction(
-//            function () use ($resource,$request) {
-//                //$resource->fill($request);
-//                //$resource->save();
-//                //$resource->refresh();
-//                Evidence::query()->update();
-//            }
-//        );
         return redirect(route('evidences'));
     }
 
@@ -140,43 +109,16 @@ class EvidenceController extends Controller
                 $resource->fill($data);
                 $resource->save();
                 $resource->refresh();
-                Evidence::query()->create(['resource_id' => $resource->id, 'resource_type' => $model]);
+                Evidence::query()->create(
+                    [
+                        'resource_id' => $resource->id,
+                        'resource_type' => $model,
+                        'storage_location_id' => $data['storage_location_id']
+                    ]
+                );
             }
         );
-//        $resource = null;
-        // INSERT dump() dd()
-        //dump($data);
-//        DB::transaction(
-//            function () use ($data, &$resource) {
-//                $typeName = Arr::pull($data, 'type_name');
-//                $resourceType = Arr::pull($data, 'resource_type');
-//                /** @var EvidenceType $evidenceType */
-//                $evidenceType = EvidenceType::find($resourceType);
-//
-//                /** @var ReferenceType $referenceType */
-//                $referenceType = ReferenceType::query()
-//                    ->where('type_name', 'ilike', $typeName)
-//                    ->first();
-//
-//                if (!$referenceType) {
-//                    $referenceType = ReferenceType::query()
-//                        ->create(['evidence_type_id' => $resourceType, 'type_name' => $typeName]);
-//                }
-//
-//                $data = array_merge($data, ['type' => $referenceType->id]);
-//                $resourceClass = $evidenceType->model_namespace;
-//                $resource = new $resourceClass();
-//                $resource->fill($data);
-//                $resource->save();
-//                $resource->refresh();
-//
-//                Evidence::query()->create(
-//                    ['resource_id' => $resource->id, 'resource_type' => $resourceType]
-//                );
-//            }
-//        );
 
-
-        return redirect(route('evidences.create', ['']));
+        return redirect(route('evidences', $data['storage_location_id']));
     }
 }

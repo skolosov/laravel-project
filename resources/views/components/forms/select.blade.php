@@ -1,8 +1,7 @@
-<select class="form-select" id="actionSelect" name="{{$name}}"
-        label-title="{{$labelTitle}}"
-        placeholder="{{$placeholder}}">
+<label class="form-label">{{$labelTitle}}</label>
+<select class="form-select" id="actionSelect" name="{{$name}}" >
     @foreach($options as $option)
-        @if($selected == $option['id'])
+        @if(!is_null($selected) && $selected == $option['id'])
             <option value="{{$option['id']}}" selected>{{$option['name']}}</option>
         @else
             <option value="{{$option['id']}}">{{$option['name']}}</option>
