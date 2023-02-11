@@ -9,6 +9,17 @@ use Illuminate\Http\Request;
 
 class StaffController extends Controller
 {
+    public function index()
+    {
+        $staffs = Staff::all();
+        return view(
+            'staff',
+            [
+                'staffs' => $staffs
+            ]
+        );
+    }
+
     public function create(
     ): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
@@ -32,7 +43,7 @@ class StaffController extends Controller
     ): \Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse {
         $post = $request->get('post');;
         $post_find = Post::query()
-            ->where('name',  $post)
+            ->where('name', $post)
             ->first();
         if (!$post_find) {
             $post_find = Post::query()
@@ -41,7 +52,7 @@ class StaffController extends Controller
 
         $department = $request->get('department');
         $department_find = Department::query()
-            ->where('name',  $department)
+            ->where('name', $department)
             ->first();
         if (!$department_find) {
             $department_find = Department::query()
@@ -57,6 +68,6 @@ class StaffController extends Controller
             ]
         );
 
-        return redirect(route('staff.create'));
+        return redirect(route('staff'));
     }
 }

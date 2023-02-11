@@ -27,6 +27,13 @@ class Staff extends Model
         'department_id',
         'phone'
     ];
-
+    public function post(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Post::class,'post_id','id');
+    }
+    public function department(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Department::class,'department_id','id');
+    }
 
 }

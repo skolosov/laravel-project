@@ -16,20 +16,21 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($evidencesArray as $item)
+{{--            @dd($staffs)--}}
+            @foreach($staffs as $item)
                 <tr>
                     <td>{{$item->id}}</td>
-                    <td>{{$item->resource->fio}}</td>
-                    <td>{{$item->resource->post}}</td>
-                    <td>{{$item->resource->department}}</td>
-                    <td>{{$item->resource->phone}}</td>
+                    <td>{{$item->fio}}</td>
+                    <td>{{$item->post->name}}</td>
+                    <td>{{$item->department->name}}</td>
+                    <td>{{$item->phone}}</td>
                     <td>
-                        <x-forms.form method="get" action="{{route('evidences.edit',['id'=>$item->id])}}">
+                        <x-forms.form method="get" action="{{route('staff.edit',['id'=>$item->id])}}">
                             <x-forms.button>&#9998</x-forms.button>
                         </x-forms.form>
                     </td>
                     <td>
-                        <x-forms.form method="post" method-attribute="delete" action="{{route('evidences.destroy',['id'=>$item->id])}}">
+                        <x-forms.form method="post" method-attribute="delete" action="{{route('staff.destroy',['id'=>$item->id])}}">
                             <x-forms.button>&#10006</x-forms.button>
                         </x-forms.form>
                     </td>
