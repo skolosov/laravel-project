@@ -2,18 +2,18 @@
 @section('content')
     <div class="container h-100 w-100">
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-{{--            <button class="btn btn-secondary"--}}
-{{--               href="#"--}}
-{{--               data-toggle="modal"--}}
-{{--               data-target="#createStorageLocation"--}}
-{{--            >--}}
-{{--               Создать новое место хранения--}}
-{{--            </button>--}}
-            <x-modal modalId="createStorageLocation"
-                     title="Создание места хранения"
-            >
-                аывпвыпывпывп
-            </x-modal>
+                    <button class="btn btn-secondary"
+                       href="#"
+                       data-bs-toggle="modal"
+                       data-bs-target="#createStorageLocation"
+                    >
+                       Создать новое место хранения
+                    </button>
+                    <x-modal modalId="createStorageLocation"
+                             title="Создание места хранения"
+                    >
+                        аывпвыпывпывп
+                    </x-modal>
         </div>
 
         <h1>Места хранения</h1>
@@ -40,7 +40,8 @@
                         </x-forms.form>
                     </td>
                     <td class="text-center">
-                        <x-forms.form method="post" method-attribute="delete" action="{{route('storageLocation.destroy',['id'=>$item->id])}}">
+                        <x-forms.form method="post" method-attribute="delete"
+                                      action="{{route('storageLocation.destroy',['id'=>$item->id])}}">
                             <x-forms.button>&#10006</x-forms.button>
                         </x-forms.form>
                     </td>
@@ -52,25 +53,25 @@
             </tbody>
         </table>
     </div>
-{{--    <div class="container h-100 w-100">--}}
-{{--        <div class="card">--}}
-{{--            <div class="card-header">--}}
-{{--                <div class="row align-items-center align-content-between">--}}
-{{--                    <div class="col">--}}
-{{--                        <h3>Места хранения</h3>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-3 d-flex justify-content-end">--}}
-{{--                        <storage-locations-create--}}
-{{--                            :divisions-options="{{$divisions}}"--}}
-{{--                        ></storage-locations-create>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <div class="card-body p-2">--}}
-{{--                <storage-locations-table--}}
-{{--                    :data-rows="{{$storageLocation}}"--}}
-{{--                ></storage-locations-table>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    {{--    <div class="container h-100 w-100">--}}
+    {{--        <div class="card">--}}
+    {{--            <div class="card-header">--}}
+    {{--                <div class="row align-items-center align-content-between">--}}
+    {{--                    <div class="col">--}}
+    {{--                        <h3>Места хранения</h3>--}}
+    {{--                    </div>--}}
+    {{--                    <div class="col-3 d-flex justify-content-end">--}}
+    {{--                        <storage-locations-create--}}
+    {{--                            :divisions-options="{{$divisions}}"--}}
+    {{--                        ></storage-locations-create>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--            <div class="card-body p-2">--}}
+    {{--                <storage-locations-table--}}
+    {{--                    :data-rows="{{$storageLocation}}"--}}
+    {{--                ></storage-locations-table>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
 @endsection

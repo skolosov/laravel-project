@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a class="btn btn-secondary" href="{{route('evidences.create', ['storageLocation' => $storageLocation])}}">
+            <a class="btn btn-secondary" href="{{route('evidences.create', ['storageLocation' => request()->route()->parameters['storageLocation']])}}">
                 Создать новое вещественное доказательство
             </a>
         </div>
