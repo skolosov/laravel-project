@@ -2,11 +2,23 @@
 @section('content')
     <div class="container h-100 w-100">
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a class="btn btn-secondary" href="{{route('storageLocation.create')}}">Создать новое место хранения</a>
+{{--            <button class="btn btn-secondary"--}}
+{{--               href="#"--}}
+{{--               data-toggle="modal"--}}
+{{--               data-target="#createStorageLocation"--}}
+{{--            >--}}
+{{--               Создать новое место хранения--}}
+{{--            </button>--}}
+            <x-modal modalId="createStorageLocation"
+                     title="Создание места хранения"
+            >
+                аывпвыпывпывп
+            </x-modal>
         </div>
+
         <h1>Места хранения</h1>
-        <table class="table table-hover" id="table_storage_location">
-            <thead>
+        <table class="table table-hover table-striped table-md align-middle" id="table_storage_location">
+            <thead class="table-dark">
             <tr>
                 <th scope="col">№ п\п</th>
                 <th scope="col">Наименование</th>
@@ -21,18 +33,18 @@
                 <tr data-href="{{route('evidences',$item->id)}}">
                     <td>{{$item->id}}</td>
                     <td>{{$item->name}}</td>
-                    <td>{{$item->evidences_count}}</td>
-                    <td>
+                    <td class="text-end">{{$item->evidences_count}}</td>
+                    <td class="text-center">
                         <x-forms.form method="get" action="{{route('storageLocation.edit',['id'=>$item->id])}}">
                             <x-forms.button>&#9998</x-forms.button>
                         </x-forms.form>
                     </td>
-                    <td>
+                    <td class="text-center">
                         <x-forms.form method="post" method-attribute="delete" action="{{route('storageLocation.destroy',['id'=>$item->id])}}">
                             <x-forms.button>&#10006</x-forms.button>
                         </x-forms.form>
                     </td>
-                    <td>
+                    <td class="text-center">
                         <a class="btn btn-success" href="{{route('evidences', $item->id)}}">Открыть</a>
                     </td>
                 </tr>
