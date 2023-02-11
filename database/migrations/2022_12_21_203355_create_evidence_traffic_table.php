@@ -30,7 +30,7 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->unsignedBigInteger('staff_id')->comment('Сотрудник сдавший, получивший ВД');
             $table->foreign('staff_id')
-                ->references('id')->on('staff')
+                ->references('id')->on('staffs')
                 ->onDelete('cascade');
             $table->string('doc_number')->nullable()->comment('Номер документа');
             $table->date('doc_date')->nullable()->comment('Дата документа');

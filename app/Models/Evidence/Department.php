@@ -20,4 +20,9 @@ class Department extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function staffs(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Staff::class,'department_id','id');
+    }
 }

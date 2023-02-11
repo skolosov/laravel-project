@@ -20,4 +20,9 @@ class Post extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function staffs(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Staff::class,'post_id','id');
+    }
 }

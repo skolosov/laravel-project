@@ -12,12 +12,12 @@ class StorageLocationController extends Controller
     {
         $storageLocation = StorageLocation::withCount('evidences')->orderBy('id')->get();
         $divisions = Division::all();
-        //dd($storageLocation);
-        return view('storage-location',
-                    [
-                        'storageLocation' => $storageLocation,
-                        'divisions' => $divisions,
-                    ]
+        return view(
+            'storage-location',
+            [
+                'storageLocation' => $storageLocation,
+                'divisions' => $divisions,
+            ]
         );
     }
 
