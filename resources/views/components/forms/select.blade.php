@@ -7,6 +7,7 @@
             <option value="{{$option['id']}}">{{$option['name']}}</option>
         @endif
     @endforeach
+
 </select>
 @if($isSubmit)
     <script>

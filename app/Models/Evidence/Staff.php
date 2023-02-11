@@ -27,4 +27,6 @@ class Staff extends Model
         'department_id',
         'phone'
     ];
+
+
 }
