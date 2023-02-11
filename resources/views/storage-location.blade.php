@@ -11,6 +11,9 @@
                 <th scope="col">№ п\п</th>
                 <th scope="col">Наименование</th>
                 <th scope="col">Кол-во хранимых вещественных доказательств</th>
+                <th scope="col">Редактировать</th>
+                <th scope="col">Удалить</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -29,20 +32,14 @@
                             <x-forms.button>&#10006</x-forms.button>
                         </x-forms.form>
                     </td>
+                    <td>
+                        <a class="btn btn-success" href="{{route('evidences', $item->id)}}">Открыть</a>
+                    </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
     </div>
-    <script>
-        const table = document.querySelector('#table_storage_location');
-        const rows = table.querySelectorAll('tr[data-href]');
-        for (const row of rows) {
-            row.addEventListener('click', () => {
-                document.location = row.getAttribute("data-href")
-            });
-        }
-    </script>
 {{--    <div class="container h-100 w-100">--}}
 {{--        <div class="card">--}}
 {{--            <div class="card-header">--}}

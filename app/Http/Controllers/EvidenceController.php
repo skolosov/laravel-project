@@ -30,7 +30,7 @@ class EvidenceController extends Controller
         ],
     ];
 
-    public function create(Request $request)
+    public function create(Request $request, int $storageLocationId)
     {
         $type = $request->get('type_evidence');
         return view(
@@ -39,26 +39,28 @@ class EvidenceController extends Controller
                 'types' => $this->resourcesModels,
                 'method' => 'post',
                 'type' => $type ?? 1,
-                'storageLocations' => StorageLocation::all()
+                'storageLocations' => StorageLocation::all(),
+                'storageLocation' => $storageLocationId,
             ]
         );
     }
 
-    public function index(?int $id)
+    public function index(int $storageLocationId)
     {
         $evidencesBuilder = Evidence::with('resource');
-        $id && $evidencesBuilder->where('storage_location_id', $id);
+        $storageLocationId && $evidencesBuilder->where('storage_location_id', $storageLocationId);
         $evidencesArray = $evidencesBuilder->get();
 
         return view(
             'evidence',
             [
-                'evidencesArray' => $evidencesArray
+                'evidencesArray' => $evidencesArray,
+                'storageLocation' => $storageLocationId,
             ]
         );
     }
 
-    public function edit($id)
+    public function edit(int $storageLocationId, int $id)
     {
         $item = Evidence::query()->with('resource')->find($id);
         $type = Arr::first(
@@ -67,11 +69,16 @@ class EvidenceController extends Controller
         )['id'];
         return view(
             'evidence-edit',
-            ['method' => 'post', 'type' => $type ?? 1, 'evidence' => $item]
+            [
+                'method' => 'post',
+                'type' => $type ?? 1,
+                'evidence' => $item,
+                'storageLocation' => $storageLocationId,
+            ]
         );
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, int $storageLocationId, int $id)
     {
         $data = $request->all();
         $resource = Evidence::query()->find($id)->resource;
@@ -83,10 +90,17 @@ class EvidenceController extends Controller
         );
 
 
-        return redirect(route('evidences'));
+        return redirect(
+            route(
+                'evidences',
+                [
+                    'storageLocation' => $storageLocationId,
+                ]
+            )
+        );
     }
 
-    public function destroy($id)
+    public function destroy(int $storageLocationId, int $id)
     {
         DB::transaction(
             function () use ($id) {
@@ -95,16 +109,23 @@ class EvidenceController extends Controller
                 $item->delete();
             }
         );
-        return redirect(route('evidences'));
+        return redirect(
+            route(
+                'evidences',
+                [
+                    'storageLocation' => $storageLocationId,
+                ]
+            )
+        );
     }
 
-    public function store(Request $request)
+    public function store(Request $request, int $storageLocationId)
     {
         $data = $request->all();
         $type = Arr::pull($data, 'resource_type');
         $model = $this->resourcesModels[$type]['model_namespace'];
         DB::transaction(
-            function () use ($model, $data) {
+            function () use ($model, $data, $storageLocationId) {
                 $resource = new $model();
                 $resource->fill($data);
                 $resource->save();
@@ -113,12 +134,19 @@ class EvidenceController extends Controller
                     [
                         'resource_id' => $resource->id,
                         'resource_type' => $model,
-                        'storage_location_id' => $data['storage_location_id']
+                        'storage_location_id' => $storageLocationId
                     ]
                 );
             }
         );
 
-        return redirect(route('evidences', $data['storage_location_id']));
+        return redirect(
+            route(
+                'evidences',
+                [
+                    'storageLocation' => $storageLocationId,
+                ]
+            )
+        );
     }
 }

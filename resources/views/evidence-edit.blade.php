@@ -4,13 +4,9 @@
         <link href="{{ asset('resources/css/two_columns.css') }}" rel="stylesheet">
     @endpush
     <div class="container">
-        <div class="wrap">
-            <div class="left"><a href="#">Левый блок</a></div>
-            <div class="right"><a href="#">Правый блок</a></div>
-        </div>
         <h1>Вещественные доказательства</h1>
-{{--        @dump($evidence)--}}
-        <x-forms.form method="post" method-attribute="patch" action="{{route('evidences.update',['id'=>$evidence->id])}}">
+        <x-forms.form method="post" method-attribute="patch"
+                      action="{{route('evidences.update',['storageLocation' => $storageLocation, 'id'=>$evidence->id])}}">
             <x-forms.input input-type="text" name-input="name"
                            label-title="Наименование вещественного доказательства"
                            placeholder="Наименование вещественного доказательства"
@@ -30,28 +26,38 @@
                 <x-forms.input input-type="text" name-input="engine_number" label-title="Номер двигателя"
                                placeholder="Номер двигателя" value="{{$evidence->resource->engine_number ?? ''}}"/>
                 <x-forms.input input-type="text" name-input="registration_number" label-title="Регистрационный номер"
-                               placeholder="Регистрационный номер" value="{{$evidence->resource->registration_number ?? ''}}"/>
-                <x-forms.input input-type="text" name-input="brand" label-title="Модель" placeholder="Модель" value="{{$evidence->resource->brand ?? ''}}"/>
-                <x-forms.input input-type="text" name-input="color" label-title="Цвет" placeholder="Цвет" value="{{$evidence->resource->color ?? ''}}"/>
+                               placeholder="Регистрационный номер"
+                               value="{{$evidence->resource->registration_number ?? ''}}"/>
+                <x-forms.input input-type="text" name-input="brand" label-title="Модель" placeholder="Модель"
+                               value="{{$evidence->resource->brand ?? ''}}"/>
+                <x-forms.input input-type="text" name-input="color" label-title="Цвет" placeholder="Цвет"
+                               value="{{$evidence->resource->color ?? ''}}"/>
                 <x-forms.input input-type="text" name-input="release_date" label-title="Год выпуска"
                                placeholder="Год выпуска" value="{{$evidence->resource->release_date ?? ''}}"/>
             @elseif($type == 5)
-                <x-forms.input input-type="text" name-input="brand" label-title="Модель" placeholder="Модель" value="{{$evidence->resource->brand ?? ''}}"/>
-                <x-forms.input input-type="text" name-input="series" label-title="Серия" placeholder="Серия" value="{{$evidence->resource->series ?? ''}}"/>
-                <x-forms.input input-type="text" name-input="number" label-title="Номер" placeholder="Номер" value="{{$evidence->resource->number ?? ''}}"/>
+                <x-forms.input input-type="text" name-input="brand" label-title="Модель" placeholder="Модель"
+                               value="{{$evidence->resource->brand ?? ''}}"/>
+                <x-forms.input input-type="text" name-input="series" label-title="Серия" placeholder="Серия"
+                               value="{{$evidence->resource->series ?? ''}}"/>
+                <x-forms.input input-type="text" name-input="number" label-title="Номер" placeholder="Номер"
+                               value="{{$evidence->resource->number ?? ''}}"/>
                 <x-forms.input input-type="text" name-input="detail" label-title="Наименование детали"
                                placeholder="Наименование детали" value="{{$evidence->resource->detail ?? ''}}"/>
                 <x-forms.input input-type="text" name-input="release_date" label-title="Год выпуска"
                                placeholder="Год выпуска" value="{{$evidence->resource->release_date ?? ''}}"/>
             @elseif($type == 6)
                 <x-forms.input input-type="text" name-input="unit_name" label-title="Единицы измерения"
-                               placeholder="Единицы измерения" value="{{$evidence->resource->unit_name ?? ''}}"></x-forms.input>
+                               placeholder="Единицы измерения"
+                               value="{{$evidence->resource->unit_name ?? ''}}"></x-forms.input>
                 <x-forms.input input-type="text" name-input="designation" label-title="Наименование"
-                               placeholder="Наименование" value="{{$evidence->resource->designation ?? ''}}"></x-forms.input>
+                               placeholder="Наименование"
+                               value="{{$evidence->resource->designation ?? ''}}"></x-forms.input>
                 <x-forms.input input-type="text" name-input="quantity" label-title="Количество"
                                placeholder="Количество" value="{{$evidence->resource->quantity ?? ''}}"/>
-                <x-forms.input input-type="text" name-input="amount" label-title="Сумма" placeholder="Сумма" value="{{$evidence->resource->amount ?? ''}}"/>
-                <x-forms.input input-type="text" name-input="series" label-title="Серия" placeholder="Серия" value="{{$evidence->resource->series ?? ''}}"/>
+                <x-forms.input input-type="text" name-input="amount" label-title="Сумма" placeholder="Сумма"
+                               value="{{$evidence->resource->amount ?? ''}}"/>
+                <x-forms.input input-type="text" name-input="series" label-title="Серия" placeholder="Серия"
+                               value="{{$evidence->resource->series ?? ''}}"/>
                 <x-forms.input input-type="text" name-input="number" label-title="Серийный номер"
                                placeholder="Серийный номер" value="{{$evidence->resource->number ?? ''}}"/>
                 <x-forms.input input-type="text" name-input="release_date" label-title="Год выпуска"

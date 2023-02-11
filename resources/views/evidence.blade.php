@@ -2,9 +2,10 @@
 
 @section('content')
     <div class="container">
-{{--        @dump($evidencesArray)--}}
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a class="btn btn-secondary" href="{{route('evidences.create')}}">Создать новое вещественное доказательство</a>
+            <a class="btn btn-secondary" href="{{route('evidences.create', ['storageLocation' => $storageLocation])}}">
+                Создать новое вещественное доказательство
+            </a>
         </div>
         <table class="table table-hover">
             <thead>
@@ -13,6 +14,8 @@
                 <th scope="col">Наименование</th>
                 <th scope="col">Кол-во(Сумма, литры, граммы)</th>
                 <th scope="col">Номер</th>
+                <th scope="col">Изменить</th>
+                <th scope="col">Удалить</th>
             </tr>
             </thead>
             <tbody>
@@ -35,12 +38,14 @@
                     }}
                     </td>
                     <td>
-                        <x-forms.form method="get" action="{{route('evidences.edit',['id'=>$item->id])}}">
+                        <x-forms.form method="get"
+                                      action="{{route('evidences.edit',['storageLocation' => $storageLocation, 'id'=>$item->id])}}">
                             <x-forms.button>&#9998</x-forms.button>
                         </x-forms.form>
                     </td>
                     <td>
-                        <x-forms.form method="post" method-attribute="delete" action="{{route('evidences.destroy',['id'=>$item->id])}}">
+                        <x-forms.form method="post" method-attribute="delete"
+                                      action="{{route('evidences.destroy',['storageLocation' => $storageLocation, 'id'=>$item->id])}}">
                             <x-forms.button>&#10006</x-forms.button>
                         </x-forms.form>
                     </td>
