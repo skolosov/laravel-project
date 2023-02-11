@@ -12,10 +12,6 @@
             <x-forms.input input-type="text" name-input="department"
                            label-title="Подразделение"
                            placeholder="Служба/Подразделение/Организация"/>
-{{--            <x-forms.select :options="$posts" :selected="$post" :is-submit="false"--}}
-{{--                            name="post_id" label-title="Должность" placeholder="Должность"/>--}}
-{{--            <x-forms.select :options="$departments" :selected="$department" :is-submit="false"--}}
-{{--                            name="department_id" label-title="Служба/Подразделение/Организация"/>--}}
             <x-forms.input input-type="text" name-input="phone"
                            label-title="Телефон"
                            placeholder="Телефон"/>

@@ -32,7 +32,7 @@ class StaffController extends Controller
     ): \Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse {
         $post = $request->get('post');;
         $post_find = Post::query()
-            ->where('name', 'ilike', $post)
+            ->where('name',  $post)
             ->first();
         if (!$post_find) {
             $post_find = Post::query()
@@ -41,7 +41,7 @@ class StaffController extends Controller
 
         $department = $request->get('department');
         $department_find = Department::query()
-            ->where('name', 'ilike', $department)
+            ->where('name',  $department)
             ->first();
         if (!$department_find) {
             $department_find = Department::query()
@@ -57,7 +57,6 @@ class StaffController extends Controller
             ]
         );
 
-        $staff->save();
         return redirect(route('staff.create'));
     }
 }

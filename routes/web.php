@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::patch('storage-location/{id}/update',[StorageLocationController::class,'update'])->name('storageLocation.update');
     Route::delete('storage-location/{id}/destroy',[StorageLocationController::class,'destroy'])->name('storageLocation.destroy');
 
+    Route::get('staff',[StaffController::class,'index'])->name('staff.index');
     Route::get('staff/create',[StaffController::class,'create'])->name('staff.create');
     Route::get('staff/{id}/edit',[StaffController::class,'edit'])->name('staff.edit');
     Route::post('staff',[StaffController::class,'store'])->name('staff.store');
