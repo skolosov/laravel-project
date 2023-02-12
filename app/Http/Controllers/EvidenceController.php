@@ -32,30 +32,44 @@ class EvidenceController extends Controller
 
     public function create(Request $request, int $storageLocationId)
     {
+        $evidencesBuilder = Evidence::with('resource');
+        $storageLocationId && $evidencesBuilder->where('storage_location_id', $storageLocationId);
+        $evidencesArray = $evidencesBuilder->get();
         $type = $request->get('type_evidence');
         return view(
-            'evidence-form',
+            'evidence',
             [
                 'types' => $this->resourcesModels,
                 'method' => 'post',
                 'type' => $type ?? 1,
                 'storageLocations' => StorageLocation::all(),
                 'storageLocation' => $storageLocationId,
+                'evidencesArray' => $evidencesArray,
             ]
         );
     }
 
-    public function index(int $storageLocationId)
+    public function index(Request $request, int $storageLocationId)
     {
         $evidencesBuilder = Evidence::with('resource');
         $storageLocationId && $evidencesBuilder->where('storage_location_id', $storageLocationId);
         $evidencesArray = $evidencesBuilder->get();
+        $type = $request->get('type_evidence');
 
+        //$data = $request->all();
+        //$type = Arr::pull($data, 'resource_type');
+        //$model = $this->resourcesModels[$type]['model_namespace'];
+        //$resource = new $model();
         return view(
             'evidence',
             [
                 'evidencesArray' => $evidencesArray,
                 'storageLocation' => $storageLocationId,
+                'types' => $this->resourcesModels,
+                'type' => $type ?? 1,
+                //'method' => 'post',
+                // 'resource_id' => $resource->id,
+                //'resource_type' => $model,
             ]
         );
     }
