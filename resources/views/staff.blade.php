@@ -4,6 +4,16 @@
     <div class="container">
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <a class="btn btn-secondary" href="{{route('staff.create')}}">Создать новое должностное лицо</a>
+            <x-forms.form method="post" action="{{route('storageLocation.store')}}">
+                <x-forms.input input-type="text" name-input="name"
+                               label-title="Наименование места хранения"
+                               placeholder="Наименование места хранения"/>
+                <x-forms.select :options="$divisions"
+                                :selected="$division"
+                                :is-submit="false"
+                                name="division_id" label-title="Подразделение"/>
+                <x-forms.button>Сохранить</x-forms.button>
+            </x-forms.form>
         </div>
         <table class="table table-hover">
             <thead>
