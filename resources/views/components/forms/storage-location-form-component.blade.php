@@ -1,6 +1,6 @@
 <x-forms.form method="{{$metod}}"
               method-attribute="{{$metodAttribute}}"
-              action="{{route('storageLocation.update',['id'=>$storageLocation->id])}}">
+              action="{{$action}}">
     <x-forms.input input-type="text" name-input="name"
                    label-title="{{$name}}"
                    placeholder="{{$name}}"
