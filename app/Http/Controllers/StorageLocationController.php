@@ -43,15 +43,18 @@ class StorageLocationController extends Controller
         return $this->service->store(StorageLocation::class, $request->all());
     }
 
-    public function edit(Request $request,int $id)
+    public function edit(Request $request, int $id)
     {
         return $this->service->edit(StorageLocation::class, $id);
     }
 
-    public function update(Request $request,int $id)
+    public function update(Request $request, int $id)
     {
-
-        return $this->service->update(StorageLocation::class, $id);
+        $data = [
+            'name' => $request->input('name'),
+            'division_id' => $request->input('division_id')
+        ];
+        return $this->service->update(StorageLocation::class, $id, $data);
     }
 
     public function destroy(int $id)

@@ -21,6 +21,6 @@ interface ReadInterface
 
     public function update(string $model, int $id, ?array $data = null): ?Model;
 
-    public function destroy(string $model, int $id): ?Model;
+    public function destroy(string $model, int $id): int;
 
 }

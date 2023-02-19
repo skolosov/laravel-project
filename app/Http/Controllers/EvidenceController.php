@@ -66,9 +66,18 @@ class EvidenceController extends Controller
         return $this->service->edit(Evidence::class, $id, ['resource']);
     }
 
-    public function destroy(Request $request, int $id)
+    public function destroy(int $id)
     {
-        return $this->service->edit(Evidence::class, $id, ['resource']);
+        $storageLocationId=Evidence::find($id)->only('storage_location_id');
+        $this->service->destroy(Evidence::class, $id);
+        return redirect(
+            route(
+                'evidences',
+                [
+                    'storageLocation' => $storageLocationId['storage_location_id'],
+                ]
+            )
+        );
     }
 
 //    public function create(Request $request, int $storageLocationId)

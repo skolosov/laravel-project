@@ -40,6 +40,7 @@ Route::group(
         Route::get('/', [EvidenceController::class, 'index'])->name('evidences');
         Route::get('/create', [EvidenceController::class, 'create'])->name('evidences.create');
         Route::post('/', [EvidenceController::class, 'store'])->name('evidences.store');
+
     }
 );
 //Route::get('{storageLocation}/evidences/',[EvidenceController::class,'index'])->name('evidences');

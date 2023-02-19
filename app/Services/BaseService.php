@@ -45,7 +45,7 @@ class BaseService implements ReadInterface, WriteInterface
         return $builder->save()->refresh();
     }
 
-    public function edit(string $model, int $id, ?array $relations = null ): ?Model
+    public function edit(string $model, int $id, ?array $relations = null): ?Model
     {
         /** @var Builder $builder */
         $builder = $model::query();
@@ -59,10 +59,15 @@ class BaseService implements ReadInterface, WriteInterface
         return $model::query()->where('id', $id)->update($data);
     }
 
-    public function destroy(string $model, int $id): ?Model
+    public function destroy(string $model, int $id): int
     {
         /** @var Builder $builder */
-        return $model::destroy($id);
+        $builder = $model::query()->find($id);
+        if ($builder) {
+            $model::destroy($id);
+            return 1;
+        }
+        else return 0;
     }
 
 }
