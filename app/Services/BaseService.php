@@ -49,7 +49,9 @@ class BaseService implements ReadInterface, WriteInterface
     {
         /** @var Builder $builder */
         $builder = $model::query();
+
         !is_null($relations) && $builder->with($relations);
+
         return $builder->find($id);
     }
 
@@ -66,8 +68,9 @@ class BaseService implements ReadInterface, WriteInterface
         if ($builder) {
             $model::destroy($id);
             return 1;
+        } else {
+            return 0;
         }
-        else return 0;
     }
 
 }

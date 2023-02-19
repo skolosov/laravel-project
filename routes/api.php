@@ -39,8 +39,8 @@ Route::group(
 Route::group(
     ['prefix' => '/{storageLocation}/evidences'],
     function () {
-        Route::get('/', [EvidenceController::class, 'index'])->name('evidences');
         Route::get('/create', [EvidenceController::class, 'create'])->name('evidences.create');
+        Route::get('/', [EvidenceController::class, 'index'])->name('evidences');
         Route::post('/', [EvidenceController::class, 'store'])->name('evidences.store');
 
     }
@@ -55,8 +55,6 @@ Route::group(
         Route::delete('/{id}/destroy', [EvidenceController::class, 'destroy'])->name('evidences.destroy');
     }
 );
-
-
 
 //Route::get('storage-locations/',[StorageLocationController::class,'index'])->name('storageLocation');
 //Route::get('storage-locations/{id}/edit',[StorageLocationController::class,'edit'])->name('storageLocation.edit');
