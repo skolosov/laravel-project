@@ -22,12 +22,14 @@ Route::middleware('auth:sanctum')->get(
         return $request->user();
     }
 );
+//Route::get('storage-locations/create',[StorageLocationController::class,'create'])->name('storageLocation.create');
+
 Route::group(
     ['prefix' => 'storage-locations'],
     function () {
         Route::get('/', [StorageLocationController::class, 'index'])->name('storageLocation.index');
+        Route::get('/create', [StorageLocationController::class, 'create'])->name('storageLocation.create');
         Route::get('/{id}', [StorageLocationController::class, 'show'])->name('storageLocation.show');
-        Route::get('create', [StorageLocationController::class, 'create'])->name('storageLocation.create');
         Route::get('{id}/edit', [StorageLocationController::class, 'edit'])->name('storageLocation.edit');
         Route::post('/', [StorageLocationController::class, 'store'])->name('storageLocation.store');
         Route::patch('{id}/update', [StorageLocationController::class, 'update'])->name('storageLocation.update');
@@ -57,6 +59,5 @@ Route::group(
 
 
 //Route::get('storage-locations/',[StorageLocationController::class,'index'])->name('storageLocation');
-//Route::get('storage-locations/create',[StorageLocationController::class,'create'])->name('storageLocation.create');
 //Route::get('storage-locations/{id}/edit',[StorageLocationController::class,'edit'])->name('storageLocation.edit');
 

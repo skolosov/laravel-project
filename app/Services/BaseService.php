@@ -28,7 +28,7 @@ class BaseService implements ReadInterface, WriteInterface
         return $builder->find($id);
     }
 
-    public function create(string $model, ?array $parameters = null, ?array $relations = null): Model
+    public function create(string $model, ?array $parameters = null, ?array $relations = null): ?Model
     {
         /** @var Builder $builder */
         $builder = $model::query();
@@ -42,7 +42,7 @@ class BaseService implements ReadInterface, WriteInterface
         /** @var Builder $builder */
         $builder = new $model();
         $builder->fill($data);
-        return $builder->save()->refresh();
+        return $builder->save();
     }
 
     public function edit(string $model, int $id, ?array $relations = null): ?Model

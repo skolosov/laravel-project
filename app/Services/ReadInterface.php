@@ -13,7 +13,7 @@ interface ReadInterface
 
     public function show(string $model, int $id, ?array $relations = null): ?Model;
 
-    public function create(string $model,  ?array $parameters = null,?array $relations = null): Model;
+    public function create(string $model,  ?array $parameters = null,?array $relations = null): ?Model;
 
     public function store(string $model, ?array $data = null): Model;
 
