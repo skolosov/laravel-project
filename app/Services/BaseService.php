@@ -28,15 +28,6 @@ class BaseService implements ReadInterface, WriteInterface
         return $builder->find($id);
     }
 
-    public function create(string $model, ?array $parameters = null, ?array $relations = null): ?Model
-    {
-        /** @var Builder $builder */
-        $builder = $model::query();
-        !is_null($parameters) && $builder->where($parameters);
-        !is_null($relations) && $builder->with($relations);
-        return $builder->get();
-    }
-
     public function store(string $model, ?array $data = null): Model
     {
         /** @var Builder $builder */
@@ -45,32 +36,16 @@ class BaseService implements ReadInterface, WriteInterface
         return $builder->save();
     }
 
-    public function edit(string $model, int $id, ?array $relations = null): ?Model
-    {
-        /** @var Builder $builder */
-        $builder = $model::query();
-
-        !is_null($relations) && $builder->with($relations);
-
-        return $builder->find($id);
-    }
-
     public function update(string $model, int $id, ?array $data = null): ?Model
     {
         /** @var Builder $builder */
         return $model::query()->where('id', $id)->update($data);
     }
 
-    public function destroy(string $model, int $id): int
+    public function destroy(string $model, int $id)
     {
         /** @var Builder $builder */
-        $builder = $model::query()->find($id);
-        if ($builder) {
-            $model::destroy($id);
-            return 1;
-        } else {
-            return 0;
-        }
+        $model::destroy($id);
     }
 
 }
