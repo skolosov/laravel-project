@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evidence\Division;
-use Illuminate\Http\Request;
+use App\Services\DivisionService;
+use Illuminate\Support\Collection;
 
 class DivisionController extends Controller
 {
-    public function index()
+    public function __construct(private DivisionService $service)
     {
-        return view (Division::class->all());
+    }
+
+    public function index(): Collection
+    {
+        return $this->service->index(Division::class);
     }
 }
