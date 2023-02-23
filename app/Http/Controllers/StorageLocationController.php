@@ -3,48 +3,61 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evidence\StorageLocation;
-use App\Models\Evidence\Division;
-use App\Services\ReadInterface;
 use App\Services\StorageLocationService;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class StorageLocationController extends Controller
 {
-    public BaseService $service;
-
-    public function __construct(StorageLocationService $storageLocationService)
+    public function __construct(private StorageLocationService $service)
     {
-        $this->service = $storageLocationService;
     }
 
-    public function index(Request $request)
+    /**
+     * @param Request $request
+     * @return Collection
+     */
+    public function index(Request $request): Collection
     {
         return $this->service->index(StorageLocation::class);
     }
 
-    public function show(Request $request, int $id)
+    /**
+     * @param Request $request
+     * @param int $id
+     * @return StorageLocation|null
+     */
+    public function show(Request $request, int $id): ?Model
     {
         return $this->service->show(StorageLocation::class, $id);
     }
 
-    public function store(Request $request)
+    /**
+     * @param Request $request
+     * @return StorageLocation
+     */
+    public function store(Request $request): Model
     {
         return $this->service->store(StorageLocation::class, $request->all());
     }
 
-    public function update(Request $request, int $id)
+    /**
+     * @param Request $request
+     * @param int $id
+     * @return StorageLocation
+     */
+    public function update(Request $request, int $id): Model
     {
-        $data = [
-            'name' => $request->input('name'),
-            'division_id' => $request->input('division_id')
-        ];
-        return $this->service->update(StorageLocation::class, $id, $data);
+        return $this->service->update(StorageLocation::class, $id, $request->all());
     }
 
-    public function destroy(int $id)
+    /**
+     * @param int $id
+     */
+    public function destroy(int $id): void
     {
         $this->service->destroy(StorageLocation::class, $id);
-        return redirect(route('storageLocation.index'));
     }
 
 
