@@ -3,69 +3,62 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evidence\StorageLocation;
-use App\Models\Evidence\Division;
+use App\Services\StorageLocationService;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class StorageLocationController extends Controller
 {
-    public function index()
+    public function __construct(private StorageLocationService $service)
     {
-        $storageLocation = StorageLocation::withCount('evidences')->orderBy('id')->get();
-        $divisions = Division::all();
-        return view(
-            'storage-location',
-            [
-                'storageLocation' => $storageLocation,
-                'divisions' => $divisions,
-            ]
-        );
     }
 
-    public function create()
+    /**
+     * @param Request $request
+     * @return Collection
+     */
+    public function index(Request $request): Collection
     {
-        $divisions = Division::all();
-        $division = $divisions->first();
-
-        return view(
-            'storage-location-form',
-            ['divisions' => $divisions->toArray(), 'division' => $division->toArray()]
-        );
+        return $this->service->index(StorageLocation::class);
     }
 
-    public function store(Request $request)
+    /**
+     * @param Request $request
+     * @param int $id
+     * @return StorageLocation|null
+     */
+    public function show(Request $request, int $id): ?Model
     {
-        //dd($request);
-        $storageLocation = new StorageLocation();
-        $storageLocation->fill($request->all());
-        $storageLocation->save();
-        return redirect(route('storageLocation.index'));
+        return $this->service->show(StorageLocation::class, $id);
     }
 
-    public function edit($id)
+    /**
+     * @param Request $request
+     * @return StorageLocation
+     */
+    public function store(Request $request): Model
     {
-        $storageLocation = StorageLocation::query()->find($id);
-        return view(
-            'storage-location-edit',
-            [
-                'storageLocation' => $storageLocation,
-                'divisions' => Division::all()
-            ]
-        );
+        return $this->service->store(StorageLocation::class, $request->all());
     }
 
-    public function update(Request $request, $id)
+    /**
+     * @param Request $request
+     * @param int $id
+     * @return StorageLocation
+     */
+    public function update(Request $request, int $id): Model
     {
-        $data = [
-            'name' => $request->input('name'),
-            'division_id' => $request->input('division_id')
-        ];
-        StorageLocation::query()->where('id', $id)->update($data);
-        return redirect(route('storageLocation.index'));
+        return $this->service->update(StorageLocation::class, $id, $request->all());
     }
 
-    public function destroy($id)
+    /**
+     * @param int $id
+     */
+    public function destroy(int $id): void
     {
-        StorageLocation::destroy($id);
-        return redirect(route('storageLocation.index'));
+        $this->service->destroy(StorageLocation::class, $id);
     }
+
+
 }

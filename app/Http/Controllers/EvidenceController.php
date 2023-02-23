@@ -9,10 +9,13 @@ use App\Models\Evidence\Resources\Money;
 use App\Models\Evidence\Resources\OtherEvidence;
 use App\Models\Evidence\Resources\Transport;
 use App\Models\Evidence\Resources\Weapon;
-use App\Models\Evidence\StorageLocation;
+use App\Services\EvidenceService;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+
 
 class EvidenceController extends Controller
 {
@@ -30,123 +33,49 @@ class EvidenceController extends Controller
         ],
     ];
 
-    public function create(Request $request, int $storageLocationId)
+    public function __construct(private EvidenceService $service)
     {
-        $type = $request->get('type_evidence');
-        return view(
-            'evidence-form',
-            [
-                'types' => $this->resourcesModels,
-                'method' => 'post',
-                'type' => $type ?? 1,
-                'storageLocations' => StorageLocation::all(),
-                'storageLocation' => $storageLocationId,
-            ]
-        );
     }
 
-    public function index(int $storageLocationId)
+    public function index(Request $request, int $storageLocationId): Collection
     {
-        $evidencesBuilder = Evidence::with('resource');
-        $storageLocationId && $evidencesBuilder->where('storage_location_id', $storageLocationId);
-        $evidencesArray = $evidencesBuilder->get();
-
-        return view(
-            'evidence',
-            [
-                'evidencesArray' => $evidencesArray,
-                'storageLocation' => $storageLocationId,
-            ]
-        );
+        return $this->service->index(Evidence::class, ['resource'], [$storageLocationId]);
     }
 
-    public function edit(int $storageLocationId, int $id)
+    public function show(Request $request, int $storageLocationId, $id): ?Model
     {
-        $item = Evidence::query()->with('resource')->find($id);
-        $type = Arr::first(
-            $this->resourcesModels,
-            fn($typeRow) => $typeRow['model_namespace'] === $item->resource_type
-        )['id'];
-        return view(
-            'evidence-edit',
-            [
-                'method' => 'post',
-                'type' => $type ?? 1,
-                'evidence' => $item,
-                'storageLocation' => $storageLocationId,
-            ]
-        );
+        return $this->service->show(Evidence::class, $id, ['resource'], [$storageLocationId]);
     }
 
-    public function update(Request $request, int $storageLocationId, int $id)
+    public function store(Request $request, int $storageLocationId): Model
     {
         $data = $request->all();
-        $resource = Evidence::query()->find($id)->resource;
-        DB::transaction(
-            function () use ($resource, $data) {
-                $resource->update($data);
-                $resource->refresh();
-            }
+        $type = Arr::pull($data, 'resource_type');
+        $model = $this->resourcesModels[$type ?? 1]['model_namespace'];
+        DB::beginTransaction();
+        $resource = $this->service->store($model, $data);
+        $evidence = $this->service->store(
+            Evidence::class,
+            [
+                'resource_id' => $resource->id,
+                'resource_type' => $model,
+                'storage_location_id' => $storageLocationId
+            ],
+            ['resource'],
         );
+        DB::commit();
+        return $evidence;
+    }
 
-
-        return redirect(
-            route(
-                'evidences',
-                [
-                    'storageLocation' => $storageLocationId,
-                ]
-            )
-        );
+    public function update(Request $request, int $storageLocationId, int $id): Model
+    {
+        return $this->service->update(Evidence::class, $id, $request->all(), ['resource']);
     }
 
     public function destroy(int $storageLocationId, int $id)
     {
-        DB::transaction(
-            function () use ($id) {
-                $item = Evidence::query()->find($id);
-                $item->resource()->delete();
-                $item->delete();
-            }
-        );
-        return redirect(
-            route(
-                'evidences',
-                [
-                    'storageLocation' => $storageLocationId,
-                ]
-            )
-        );
+        $this->service->destroy(Evidence::class, $id);
     }
 
-    public function store(Request $request, int $storageLocationId)
-    {
-        $data = $request->all();
-        $type = Arr::pull($data, 'resource_type');
-        $model = $this->resourcesModels[$type]['model_namespace'];
-        DB::transaction(
-            function () use ($model, $data, $storageLocationId) {
-                $resource = new $model();
-                $resource->fill($data);
-                $resource->save();
-                $resource->refresh();
-                Evidence::query()->create(
-                    [
-                        'resource_id' => $resource->id,
-                        'resource_type' => $model,
-                        'storage_location_id' => $storageLocationId
-                    ]
-                );
-            }
-        );
 
-        return redirect(
-            route(
-                'evidences',
-                [
-                    'storageLocation' => $storageLocationId,
-                ]
-            )
-        );
-    }
 }
