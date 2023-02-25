@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorageLocation\StorageLocationIndexRequest;
+use App\Http\Requests\StorageLocation\StorageLocationStoreRequest;
+use App\Http\Requests\StorageLocation\StorageLocationUpdateRequest;
 use App\Models\Evidence\StorageLocation;
 use App\Services\StorageLocationService;
 use Illuminate\Database\Eloquent\Model;
@@ -15,12 +18,12 @@ class StorageLocationController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param StorageLocationIndexRequest $request
      * @return Collection
      */
-    public function index(Request $request): Collection
+    public function index(StorageLocationIndexRequest $request): Collection
     {
-        return $this->service->index(StorageLocation::class);
+        return $this->service->index(StorageLocation::class, null, $request->get('filter'));
     }
 
     /**
@@ -34,20 +37,21 @@ class StorageLocationController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param StorageLocationStoreRequest $request
      * @return StorageLocation
      */
-    public function store(Request $request): Model
+    public function store(StorageLocationStoreRequest $request): Model
     {
+        //dd($request->all());
         return $this->service->store(StorageLocation::class, $request->all());
     }
 
     /**
-     * @param Request $request
+     * @param StorageLocationUpdateRequest $request
      * @param int $id
      * @return StorageLocation
      */
-    public function update(Request $request, int $id): Model
+    public function update(StorageLocationUpdateRequest $request, int $id): Model
     {
         return $this->service->update(StorageLocation::class, $id, $request->all());
     }

@@ -32,7 +32,7 @@ Route::group(
         Route::get('/', [StorageLocationController::class, 'index'])->name('storageLocation.index');
         Route::get('/{id}', [StorageLocationController::class, 'show'])->name('storageLocation.show');
         Route::post('/', [StorageLocationController::class, 'store'])->name('storageLocation.store');
-        Route::patch('{id}', [StorageLocationController::class, 'update'])->name('storageLocation.update');
+        Route::patch('/{id}', [StorageLocationController::class, 'update'])->name('storageLocation.update');
         Route::delete('{id}', [StorageLocationController::class, 'destroy'])->name('storageLocation.destroy');
     }
 );
