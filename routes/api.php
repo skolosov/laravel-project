@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\EvidenceController;
+use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StorageLocationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,17 @@ Route::group(
         Route::post('/', [EvidenceController::class, 'store'])->name('evidences.store');
         Route::patch('{id}', [EvidenceController::class, 'update'])->name('evidences.update');
         Route::delete('{id}', [EvidenceController::class, 'destroy'])->name('evidences.destroy');
+    }
+);
+
+Route::group(
+    ['prefix' => 'staffs'],
+    function () {
+        Route::get('/', [StaffController::class, 'index'])->name('staffs.index');
+        Route::get('{id}', [StaffController::class, 'show'])->name('staffs.show');
+        Route::post('/', [StaffController::class, 'store'])->name('staffs.store');
+        Route::patch('{id}', [StaffController::class, 'update'])->name('staffs.update');
+        Route::delete('{id}', [StaffController::class, 'destroy'])->name('staffs.destroy');
     }
 );
 
