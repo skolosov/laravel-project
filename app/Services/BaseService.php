@@ -12,17 +12,11 @@ class BaseService
     public function index(
         string $model,
         ?array $relations = null,
-        ?array $filter = null
+        ?array $extends = null
     ): Collection {
         /** @var Model $model */
         $builder = $model::query();
         !is_null($relations) && $builder->with($relations);
-        if (is_array($filter) && count($filter)) {
-            foreach ($filter as $key => $filterValue) {
-                $filterData = explode(',', $filterValue);
-                $builder->whereIn($key, $filterData);
-            }
-        }
         return $builder->get();
     }
 
@@ -30,6 +24,7 @@ class BaseService
         string $model,
         int $id,
         ?array $relations = null,
+        ?array $extends = null
     ): ?Model {
         /** @var Model $model */
         $builder = $model::query();
@@ -41,6 +36,7 @@ class BaseService
         string $model,
         array $data,
         ?array $relations = null,
+        ?array $extends = null
     ): Model {
         /** @var Model $resource */
         $resource = new $model();
@@ -55,6 +51,7 @@ class BaseService
         int $id,
         array $data,
         ?array $relations = null,
+        ?array $extends = null
     ): Model {
         /** @var Model $model */
         $resource = $model::query()->findOrFail($id);
@@ -67,6 +64,7 @@ class BaseService
     public function destroy(
         string $model,
         int $id,
+        ?array $extends = null
     ): void {
         /** @var Model $model */
         $model::destroy($id);
