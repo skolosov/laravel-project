@@ -4,35 +4,24 @@
 namespace App\Services;
 
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
+use App\Models\Evidence\Resources\Alcohol;
+use App\Models\Evidence\Resources\Drug;
+use App\Models\Evidence\Resources\Money;
+use App\Models\Evidence\Resources\OtherEvidence;
+use App\Models\Evidence\Resources\Transport;
+use App\Models\Evidence\Resources\Weapon;
 
 class EvidenceService extends BaseService
 {
-    public function index(
-        string $model,
-        ?array $relations = null,
-        ?array $extends = null
-    ): Collection {
-        [$storageLocationId] = $extends;
-        /** @var Model $model */
-        $builder = $model::query();
-        !is_null($relations) && $builder->with($relations);
-        $builder->where('storage_location_id', $storageLocationId);
-        return $builder->get();
-    }
-
-    public function show(
-        string $model,
-        int $id,
-        ?array $relations = null,
-        ?array $extends = null
-    ): ?Model {
-        [$storageLocationId] = $extends;
-        /** @var Model $model */
-        $builder = $model::query();
-        !is_null($relations) && $builder->with($relations);
-        $builder->where('storage_location_id', $storageLocationId);
-        return $builder->find($id);
+    public function getType(int $typeEvidence = 1): string
+    {
+        return match ($typeEvidence) {
+            2 => Drug::class,
+            3 => Money::class,
+            4 => Transport::class,
+            5 => Weapon::class,
+            6 => OtherEvidence::class,
+            default => Alcohol::class,
+        };
     }
 }
