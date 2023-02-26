@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Evidence\Department;
-use App\Models\Evidence\Post;
+use App\Http\Requests\Staff\StaffIndexRequest;
+use App\Http\Requests\Staff\StaffStoreRequest;
+use App\Http\Requests\Staff\StaffUpdateRequest;
 use App\Models\Evidence\Staff;
 use App\Services\StaffService;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class StaffController extends Controller
     {
     }
 
-    public function index(Request $request)
+    public function index(StaffIndexRequest $request)
     {
         return $this->services->index(Staff::class, ['post', 'department'], $request->get('filter'));
     }
@@ -26,7 +27,7 @@ class StaffController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(StaffStoreRequest $request)
     {
         $data = $request->all();
         DB::beginTransaction();
@@ -47,7 +48,7 @@ class StaffController extends Controller
         return $staff;
     }
 
-    public function update(Request $request, int $id)
+    public function update(StaffUpdateRequest $request, int $id)
     {
         return $this->services->update(Staff::class, $id, $request->all(), ['post', 'department']);
     }
