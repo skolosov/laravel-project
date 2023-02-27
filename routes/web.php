@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers\EvidenceController;
-use App\Http\Controllers\StaffController;
-use App\Http\Controllers\StorageLocationController;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,15 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    if (Auth::check()) {
-        return redirect(route('storageLocation.index'));
-    }
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    if (Auth::check()) {
+//        return redirect(route('storageLocation.index'));
+//    }
+//    return view('welcome');
+//});
 
-Auth::routes();
-Route::group(['middleware' => 'auth'], function () {
+//Auth::routes();
+//Route::group(['middleware' => 'auth'], function () {
 //    Route::group(['prefix' => 'storage-locations'], function () {
 //        Route::get('/',[StorageLocationController::class,'index'])->name('storageLocation.index');
 //        Route::get('create',[StorageLocationController::class,'create'])->name('storageLocation.create');
@@ -44,12 +42,12 @@ Route::group(['middleware' => 'auth'], function () {
 //        });
 //    });
 
-    Route::get('staff',[StaffController::class,'index'])->name('staff.index');
-    Route::get('staff/create',[StaffController::class,'create'])->name('staff.create');
-    Route::get('staff/{id}/edit',[StaffController::class,'edit'])->name('staff.edit');
-    Route::post('staff',[StaffController::class,'store'])->name('staff.store');
-    Route::patch('staff/{id}/update',[StaffController::class,'update'])->name('staff.update');
-    Route::delete('staff/{id}/destroy',[StaffController::class,'destroy'])->name('staff.destroy');
+//    Route::get('staff',[StaffController::class,'index'])->name('staff.index');
+//    Route::get('staff/create',[StaffController::class,'create'])->name('staff.create');
+//    Route::get('staff/{id}/edit',[StaffController::class,'edit'])->name('staff.edit');
+//    Route::post('staff',[StaffController::class,'store'])->name('staff.store');
+//    Route::patch('staff/{id}/update',[StaffController::class,'update'])->name('staff.update');
+//    Route::delete('staff/{id}/destroy',[StaffController::class,'destroy'])->name('staff.destroy');
 
-});
+//});
 

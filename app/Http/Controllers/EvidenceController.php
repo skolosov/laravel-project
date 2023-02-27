@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Evidence\EvidenceIndexRequest;
+use App\Http\Requests\Evidence\EvidenceShowRequest;
+use App\Http\Requests\Evidence\EvidenceStoreRequest;
+use App\Http\Requests\Evidence\EvidenceUpdateRequest;
 use App\Models\Evidence\Resources\Alcohol;
 use App\Models\Evidence\Resources\Drug;
 use App\Models\Evidence\Resources\Evidence;
@@ -11,7 +15,6 @@ use App\Models\Evidence\Resources\Transport;
 use App\Models\Evidence\Resources\Weapon;
 use App\Services\EvidenceService;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -24,17 +27,28 @@ class EvidenceController extends Controller
     {
     }
 
-    public function index(Request $request): Collection
+    /**
+     * @param EvidenceIndexRequest $request
+     * @return Collection
+     */
+    public function index(EvidenceIndexRequest $request): Collection
     {
         return $this->service->index(Evidence::class, ['resource'], $request->get('filter'));
     }
-
-    public function show(Request $request, $id): ?Model
+    /**
+     * @param EvidenceShowRequest $request
+     * @param int $id
+     * @return Evidence|null
+     */
+    public function show(EvidenceShowRequest $request, $id): ?Model
     {
         return $this->service->show(Evidence::class, $id, ['resource']);
     }
-
-    public function store(Request $request): Model
+    /**
+     * @param EvidenceStoreRequest $request
+     * @return Evidence
+     */
+    public function store(EvidenceStoreRequest $request): Model
     {
         $data = $request->all();
         $type = Arr::pull($data, 'resource_type');
@@ -55,11 +69,19 @@ class EvidenceController extends Controller
         return $evidence;
     }
 
-    public function update(Request $request, int $id): Model
+    /**
+     * @param EvidenceUpdateRequest $request
+     * @param int $id
+     * @return Evidence
+     */
+    public function update(EvidenceUpdateRequest $request, int $id): Model
     {
         return $this->service->update(Evidence::class, $id, $request->all(), ['resource']);
     }
 
+    /**
+     * @param int $id
+     */
     public function destroy(int $id)
     {
         $this->service->destroy(Evidence::class, $id);
