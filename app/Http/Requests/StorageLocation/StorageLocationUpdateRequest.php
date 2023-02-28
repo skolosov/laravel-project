@@ -29,8 +29,8 @@ class StorageLocationUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'division_id' => [ 'int'],
-            'name' => [ 'string']
+            'division_id' => ['integer'],
+            'name' => ['string']
         ];
     }
 }

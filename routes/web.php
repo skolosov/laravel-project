@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function () {
+Route::get('/', function () {
+    return view('welcome');
+});
 //    if (Auth::check()) {
 //        return redirect(route('storageLocation.index'));
 //    }

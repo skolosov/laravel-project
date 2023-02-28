@@ -23,7 +23,7 @@ class BaseService
                 $builder->whereIn($key, $filterData);
             }
         }
-        return $builder->get();
+        return $builder->orderBy('id')->get();
     }
 
     public function show(
