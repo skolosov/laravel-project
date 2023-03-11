@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\EvidenceController;
 use App\Http\Controllers\StaffController;
@@ -24,10 +25,18 @@ Route::middleware('auth:sanctum')->get(
         return $request->user();
     }
 );
-//Route::get('storage-locations/create',[StorageLocationController::class,'create'])->name('storageLocation.create');
+
+Route::group(['middleware' => 'api', 'prefix' => 'auth'],
+    function ($router) {
+        Route::post('login', [AuthController::class,'login']);
+        Route::post('logout', [AuthController::class,'logout']);
+        Route::post('refresh', [AuthController::class,'refresh']);
+        Route::post('me', [AuthController::class,'me']);
+    }
+);
 
 Route::group(
-    ['prefix' => 'storage-locations'],
+    ['middleware' => 'auth:api','prefix' => 'storage-locations'],
     function () {
         Route::get('/', [StorageLocationController::class, 'index'])->name('storageLocation.index');
         Route::get('/{id}', [StorageLocationController::class, 'show'])->name('storageLocation.show');
@@ -37,7 +46,7 @@ Route::group(
     }
 );
 Route::group(
-    ['prefix' => 'evidences'],
+    ['middleware' => 'auth:api','prefix' => 'evidences'],
     function () {
         Route::get('/', [EvidenceController::class, 'index'])->name('evidences.index');
         Route::get('{id}', [EvidenceController::class, 'show'])->name('evidences.show');
@@ -48,7 +57,7 @@ Route::group(
 );
 
 Route::group(
-    ['prefix' => 'staffs'],
+    ['middleware' => 'auth:api','prefix' => 'staffs'],
     function () {
         Route::get('/', [StaffController::class, 'index'])->name('staffs.index');
         Route::get('{id}', [StaffController::class, 'show'])->name('staffs.show');
