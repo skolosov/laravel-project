@@ -5,7 +5,6 @@ use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\EvidenceController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StorageLocationController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,19 +18,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get(
-    '/user',
-    function (Request $request) {
-        return $request->user();
-    }
-);
-
-Route::group(['middleware' => 'api', 'prefix' => 'auth'],
-    function ($router) {
-        Route::post('login', [AuthController::class,'login']);
-        Route::post('logout', [AuthController::class,'logout']);
-        Route::post('refresh', [AuthController::class,'refresh']);
-        Route::post('me', [AuthController::class,'me']);
+Route::group(
+    ['middleware' => 'api', 'prefix' => 'auth'],
+    function () {
+        Route::post('login', [AuthController::class, 'login'])->name('login');
+        Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+        Route::post('refresh', [AuthController::class, 'refresh'])->name('refresh');
+        Route::post('me', [AuthController::class, 'me'])->name('me');
+        Route::post('registration', [AuthController::class, 'register'])->name('register');
     }
 );
 
