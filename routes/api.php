@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(
-    ['middleware' => 'api', 'prefix' => 'auth'],
+    ['prefix' => 'auth'],
     function () {
         Route::post('login', [AuthController::class, 'login'])->name('login');
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');
