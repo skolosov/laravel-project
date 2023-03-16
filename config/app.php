@@ -196,6 +196,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Barryvdh\Debugbar\ServiceProvider::class,
+
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
     ],
 
     /*
@@ -212,6 +214,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
+        'JWTAuth' => \Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => \Tymon\JWTAuth\Facades\JWTFactory::class
     ])->toArray(),
 
 ];

@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\EvidenceController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StorageLocationController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,16 +18,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get(
-    '/user',
-    function (Request $request) {
-        return $request->user();
+Route::group(
+    ['prefix' => 'auth'],
+    function () {
+        Route::post('login', [AuthController::class, 'login'])->name('login');
+        Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+        Route::post('refresh', [AuthController::class, 'refresh'])->name('refresh');
+        Route::post('me', [AuthController::class, 'me'])->name('me');
+        Route::post('registration', [AuthController::class, 'register'])->name('register');
     }
 );
-//Route::get('storage-locations/create',[StorageLocationController::class,'create'])->name('storageLocation.create');
 
 Route::group(
-    ['prefix' => 'storage-locations'],
+    ['middleware' => 'auth:api','prefix' => 'storage-locations'],
     function () {
         Route::get('/', [StorageLocationController::class, 'index'])->name('storageLocation.index');
         Route::get('/{id}', [StorageLocationController::class, 'show'])->name('storageLocation.show');
@@ -37,7 +40,7 @@ Route::group(
     }
 );
 Route::group(
-    ['prefix' => 'evidences'],
+    ['middleware' => 'auth:api','prefix' => 'evidences'],
     function () {
         Route::get('/', [EvidenceController::class, 'index'])->name('evidences.index');
         Route::get('{id}', [EvidenceController::class, 'show'])->name('evidences.show');
@@ -48,7 +51,7 @@ Route::group(
 );
 
 Route::group(
-    ['prefix' => 'staffs'],
+    ['middleware' => 'auth:api','prefix' => 'staffs'],
     function () {
         Route::get('/', [StaffController::class, 'index'])->name('staffs.index');
         Route::get('{id}', [StaffController::class, 'show'])->name('staffs.show');
