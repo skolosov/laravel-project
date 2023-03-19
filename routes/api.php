@@ -5,6 +5,7 @@ use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\EvidenceController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StorageLocationController;
+use App\Models\Evidence\EvidenceAppearance;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,6 +59,17 @@ Route::group(
         Route::post('/', [StaffController::class, 'store'])->name('staffs.store');
         Route::patch('{id}', [StaffController::class, 'update'])->name('staffs.update');
         Route::delete('{id}', [StaffController::class, 'destroy'])->name('staffs.destroy');
+    }
+);
+
+Route::group(
+    ['middleware' => 'auth:api','prefix' => 'evidence-appearances'],
+    function () {
+        Route::get('/', [EvidenceAppearance::class, 'index'])->name('evidenceAppearance.index');
+        Route::get('{id}', [EvidenceAppearance::class, 'show'])->name('evidenceAppearance.show');
+        Route::post('/', [EvidenceAppearance::class, 'store'])->name('evidenceAppearance.store');
+        Route::patch('{id}', [EvidenceAppearance::class, 'update'])->name('evidenceAppearance.update');
+        Route::delete('{id}', [EvidenceAppearance::class, 'destroy'])->name('evidenceAppearance.destroy');
     }
 );
 
