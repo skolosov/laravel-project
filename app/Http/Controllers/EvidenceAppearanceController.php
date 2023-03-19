@@ -18,28 +18,30 @@ class EvidenceAppearanceController extends Controller
 
     public function index(EvidenceAppearanceIndexRequest $request)
     {
-        return $this->services->index(EvidenceAppearance::class, ['appearance'], $request->get('filter'));
+        return $this->services->index(EvidenceAppearance::class, ['evidence','appearance'], $request->get('filter'));
     }
 
     public function show(Request $request, int $id)
     {
-        return $this->services->show(EvidenceAppearance::class, $id, ['appearance']);
+        return $this->services->show(EvidenceAppearance::class, $id, ['evidence','appearance']);
     }
 
     public function store(EvidenceAppearanceStoreRequest $request)
     {
         $data = $request->all();
         DB::beginTransaction();
+        $evidence = $this->services->hasEvidence($data['evidence']);
         $appearance = $this->services->hasAppearance($data['appearance']);
         $evidence_appearance = $this->services->store(
             EvidenceAppearance::class,
             array_merge(
                 $data,
                 [
+                    'evidence_id' => $evidence->id,
                     'appearance_id' => $appearance->id,
                 ]
             ),
-            ['appearance']
+            ['evidence','appearance']
         );
         DB::commit();
         return $evidence_appearance;

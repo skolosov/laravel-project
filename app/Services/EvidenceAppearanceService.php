@@ -5,6 +5,7 @@ namespace App\Services;
 
 
 use App\Models\Evidence\Appearance;
+use App\Models\Evidence\Resources\Evidence;
 
 class EvidenceAppearanceService extends BaseService
 {
@@ -13,6 +14,15 @@ class EvidenceAppearanceService extends BaseService
         return Appearance::first(
             [
                 'name' => $appearance
+            ]
+        );
+    }
+
+    public function hasEvidence(mixed $evidence): Evidence
+    {
+        return Evidence::first(
+            [
+                'name' => $evidence
             ]
         );
     }

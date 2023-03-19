@@ -4,6 +4,8 @@ namespace App\Models\Evidence;
 
 use App\Models\Evidence\Resources\Evidence;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 /**
  * Class EvidenceAppearance
  * @package App\Models\Evidence
@@ -25,12 +27,12 @@ class EvidenceAppearance extends Model
         'condition',
     ];
 
-    public function evidences(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function evidence(): BelongsTo
     {
-        return $this->hasMany(Evidence::class, 'evidence_id', 'id');
+        return $this->belongsTo(Evidence::class,'evidence_id','id');
     }
 
-    public function appearance(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function appearance(): BelongsTo
     {
         return $this->belongsTo(Appearance::class,'appearance_id','id');
     }
