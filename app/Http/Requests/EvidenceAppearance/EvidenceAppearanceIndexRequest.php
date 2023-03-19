@@ -29,7 +29,7 @@ class EvidenceAppearanceIndexRequest extends FormRequest
     public function rules()
     {
         return [
-            'filter' => ['array:id,evidence_id,appearance_id'],
+            'filter' => ['array:id,evidence_id'],
             'filter.id' => ['string'],
         ];
     }

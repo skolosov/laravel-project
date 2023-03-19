@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DivisionController;
+use App\Http\Controllers\EvidenceAppearanceController;
 use App\Http\Controllers\EvidenceController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StorageLocationController;
-use App\Models\Evidence\EvidenceAppearance;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
 Route::group(
     ['prefix' => 'auth'],
     function () {
@@ -65,11 +64,11 @@ Route::group(
 Route::group(
     ['middleware' => 'auth:api','prefix' => 'evidence-appearances'],
     function () {
-        Route::get('/', [EvidenceAppearance::class, 'index'])->name('evidenceAppearance.index');
-        Route::get('{id}', [EvidenceAppearance::class, 'show'])->name('evidenceAppearance.show');
-        Route::post('/', [EvidenceAppearance::class, 'store'])->name('evidenceAppearance.store');
-        Route::patch('{id}', [EvidenceAppearance::class, 'update'])->name('evidenceAppearance.update');
-        Route::delete('{id}', [EvidenceAppearance::class, 'destroy'])->name('evidenceAppearance.destroy');
+        Route::get('/', [EvidenceAppearanceController::class, 'index'])->name('evidenceAppearance.index');
+        Route::get('{id}', [EvidenceAppearanceController::class, 'show'])->name('evidenceAppearance.show');
+        Route::post('/', [EvidenceAppearanceController::class, 'store'])->name('evidenceAppearance.store');
+        Route::patch('{id}', [EvidenceAppearanceController::class, 'update'])->name('evidenceAppearance.update');
+        Route::delete('{id}', [EvidenceAppearanceController::class, 'destroy'])->name('evidenceAppearance.destroy');
     }
 );
 

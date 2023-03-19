@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class EvidenceAppearanceStoreRequest extends FormRequest
 {
-    public function validationData()
+    public function validationData(): array
     {
         return $this->only(['evidences_id', 'appearance_id', 'condition']);
     }
@@ -16,7 +16,7 @@ class EvidenceAppearanceStoreRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -29,8 +29,8 @@ class EvidenceAppearanceStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'evidences_id' => ['required', 'string'],
-            'appearance_id' => ['required', 'string'],
+            'evidences_id' => ['required', 'int'],
+            'appearance_id' => ['required', 'int'],
             'condition' => ['required', 'string']
         ];
     }

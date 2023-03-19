@@ -18,30 +18,23 @@ class EvidenceAppearanceController extends Controller
 
     public function index(EvidenceAppearanceIndexRequest $request)
     {
-        return $this->services->index(EvidenceAppearance::class, ['evidence','appearance'], $request->get('filter'));
+        return $this->services->index(EvidenceAppearance::class, ['evidence', 'appearance'], $request->get('filter'));
     }
 
     public function show(Request $request, int $id)
     {
-        return $this->services->show(EvidenceAppearance::class, $id, ['evidence','appearance']);
+        return $this->services->show(EvidenceAppearance::class, $id, ['evidence', 'appearance']);
     }
 
     public function store(EvidenceAppearanceStoreRequest $request)
     {
+        //dd($request);
         $data = $request->all();
         DB::beginTransaction();
-        $evidence = $this->services->hasEvidence($data['evidence']);
-        $appearance = $this->services->hasAppearance($data['appearance']);
         $evidence_appearance = $this->services->store(
             EvidenceAppearance::class,
-            array_merge(
-                $data,
-                [
-                    'evidence_id' => $evidence->id,
-                    'appearance_id' => $appearance->id,
-                ]
-            ),
-            ['evidence','appearance']
+            $data,
+            ['evidence', 'appearance']
         );
         DB::commit();
         return $evidence_appearance;
@@ -49,7 +42,7 @@ class EvidenceAppearanceController extends Controller
 
     public function update(EvidenceAppearanceUpdateRequest $request, int $id)
     {
-        return $this->services->update(EvidenceAppearance::class, $id, $request->all(), ['appearance']);
+        return $this->services->update(EvidenceAppearance::class, $id, $request->all(), ['evidence', 'appearance']);
     }
 
     public function destroy(int $id)
