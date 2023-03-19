@@ -2,6 +2,7 @@
 
 namespace App\Models\Evidence;
 
+use App\Models\Evidence\Resources\Evidence;
 use Illuminate\Database\Eloquent\Model;
 /**
  * Class EvidenceAppearance
@@ -19,8 +20,18 @@ class EvidenceAppearance extends Model
     protected $table = 'evidence_appearances';
 
     protected $fillable = [
-        'evidance_id',
+        'evidence_id',
         'appearance_id',
         'condition',
     ];
+
+    public function evidences(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Evidence::class, 'evidence_id', 'id');
+    }
+
+    public function appearance(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Appearance::class,'appearance_id','id');
+    }
 }
