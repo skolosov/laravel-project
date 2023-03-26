@@ -8,7 +8,7 @@ class EvidenceAppearanceStoreRequest extends FormRequest
 {
     public function validationData(): array
     {
-        return $this->only(['evidences_id', 'appearance_id', 'condition']);
+        return $this->only(['evidence_id', 'appearance_id', 'condition']);
     }
 
     /**
@@ -30,7 +30,7 @@ class EvidenceAppearanceStoreRequest extends FormRequest
     {
         //dd($this);
         return [
-            'evidences_id' => ['required|string'],
+            'evidence_id' => ['required|string'],
             'appearance_id' => ['required|string'],
             'condition' => ['required|string']
         ];
