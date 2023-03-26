@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+
 Route::group(
     ['prefix' => 'auth'],
     function () {
@@ -30,7 +32,7 @@ Route::group(
 );
 
 Route::group(
-    ['middleware' => 'auth:api','prefix' => 'storage-locations'],
+    ['middleware' => 'auth:api', 'prefix' => 'storage-locations'],
     function () {
         Route::get('/', [StorageLocationController::class, 'index'])->name('storageLocation.index');
         Route::get('/{id}', [StorageLocationController::class, 'show'])->name('storageLocation.show');
@@ -40,7 +42,7 @@ Route::group(
     }
 );
 Route::group(
-    ['middleware' => 'auth:api','prefix' => 'evidences'],
+    ['middleware' => 'auth:api', 'prefix' => 'evidences'],
     function () {
         Route::get('/', [EvidenceController::class, 'index'])->name('evidences.index');
         Route::get('{id}', [EvidenceController::class, 'show'])->name('evidences.show');
@@ -51,7 +53,7 @@ Route::group(
 );
 
 Route::group(
-    ['middleware' => 'auth:api','prefix' => 'staffs'],
+    ['middleware' => 'auth:api', 'prefix' => 'staffs'],
     function () {
         Route::get('/', [StaffController::class, 'index'])->name('staffs.index');
         Route::get('{id}', [StaffController::class, 'show'])->name('staffs.show');
@@ -62,7 +64,7 @@ Route::group(
 );
 
 Route::group(
-    ['middleware' => 'auth:api','prefix' => 'evidence-appearances'],
+    ['middleware' => 'auth:api', 'prefix' => 'evidence-appearances'],
     function () {
         Route::get('/', [EvidenceAppearanceController::class, 'index'])->name('evidenceAppearance.index');
         Route::get('{id}', [EvidenceAppearanceController::class, 'show'])->name('evidenceAppearance.show');
