@@ -21,8 +21,8 @@ class Department extends Model
         'name',
     ];
 
-    public function staffs(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function employees(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Staff::class,'department_id','id');
+        return $this->hasMany(Employee::class, 'department_id', 'id');
     }
 }

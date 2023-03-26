@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a class="btn btn-secondary" href="{{route('staff.create')}}">Создать новое должностное лицо</a>
+            <a class="btn btn-secondary" href="{{route('employee.create')}}">Создать новое должностное лицо</a>
             <x-forms.form method="post" action="{{route('storageLocation.store')}}">
                 <x-forms.input input-type="text" name-input="name"
                                label-title="Наименование места хранения"
@@ -27,7 +27,7 @@
             </thead>
             <tbody>
 {{--            @dd($staffs)--}}
-            @foreach($staffs as $item)
+            @foreach($employees as $item)
                 <tr>
                     <td>{{$item->id}}</td>
                     <td>{{$item->fio}}</td>
@@ -35,12 +35,12 @@
                     <td>{{$item->department->name}}</td>
                     <td>{{$item->phone}}</td>
                     <td>
-                        <x-forms.form method="get" action="{{route('staff.edit',['id'=>$item->id])}}">
+                        <x-forms.form method="get" action="{{route('employee.edit',['id'=>$item->id])}}">
                             <x-forms.button>&#9998</x-forms.button>
                         </x-forms.form>
                     </td>
                     <td>
-                        <x-forms.form method="post" method-attribute="delete" action="{{route('staff.destroy',['id'=>$item->id])}}">
+                        <x-forms.form method="post" method-attribute="delete" action="{{route('employee.destroy',['id'=>$item->id])}}">
                             <x-forms.button>&#10006</x-forms.button>
                         </x-forms.form>
                     </td>

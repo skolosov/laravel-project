@@ -1,6 +1,7 @@
 <?php
 
 
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -44,12 +45,12 @@ Route::get('/', function () {
 //        });
 //    });
 
-//    Route::get('staff',[StaffController::class,'index'])->name('staff.index');
-//    Route::get('staff/create',[StaffController::class,'create'])->name('staff.create');
-//    Route::get('staff/{id}/edit',[StaffController::class,'edit'])->name('staff.edit');
-//    Route::post('staff',[StaffController::class,'store'])->name('staff.store');
-//    Route::patch('staff/{id}/update',[StaffController::class,'update'])->name('staff.update');
-//    Route::delete('staff/{id}/destroy',[StaffController::class,'destroy'])->name('staff.destroy');
+//    Route::get('staff',[EmployeeController::class,'index'])->name('staff.index');
+//    Route::get('staff/create',[EmployeeController::class,'create'])->name('staff.create');
+//    Route::get('staff/{id}/edit',[EmployeeController::class,'edit'])->name('staff.edit');
+//    Route::post('staff',[EmployeeController::class,'store'])->name('staff.store');
+//    Route::patch('staff/{id}/update',[EmployeeController::class,'update'])->name('staff.update');
+//    Route::delete('staff/{id}/destroy',[EmployeeController::class,'destroy'])->name('staff.destroy');
 
 //});
 
