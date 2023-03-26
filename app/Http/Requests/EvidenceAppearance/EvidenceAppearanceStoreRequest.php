@@ -28,10 +28,11 @@ class EvidenceAppearanceStoreRequest extends FormRequest
      */
     public function rules()
     {
+        //dd($this);
         return [
-            'evidences_id' => ['required', 'int'],
-            'appearance_id' => ['required', 'int'],
-            'condition' => ['required', 'string']
+            'evidences_id' => ['required|string'],
+            'appearance_id' => ['required|string'],
+            'condition' => ['required|string']
         ];
     }
 }

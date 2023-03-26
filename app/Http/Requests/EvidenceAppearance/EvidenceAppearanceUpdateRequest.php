@@ -29,8 +29,8 @@ class EvidenceAppearanceUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'evidences_id' => ['int'],
-            'appearance_id' => ['int'],
+            'evidences_id' => ['string'],
+            'appearance_id' => ['string'],
             'condition' => ['string']
         ];
     }

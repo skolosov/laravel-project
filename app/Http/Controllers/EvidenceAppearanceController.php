@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EvidenceAppearance\EvidenceAppearanceIndexRequest;
+use App\Http\Requests\EvidenceAppearance\EvidenceAppearanceStoreRequest;
 use App\Http\Requests\EvidenceAppearance\EvidenceAppearanceUpdateRequest;
 use App\Models\Evidence\EvidenceAppearance;
 use App\Services\EvidenceAppearanceService;
@@ -25,7 +26,7 @@ class EvidenceAppearanceController extends Controller
         return $this->services->show(EvidenceAppearance::class, $id, ['evidence', 'appearance']);
     }
 
-    public function store(Request $request)//EvidenceAppearanceStoreRequest
+    public function store(EvidenceAppearanceStoreRequest $request)//
     {
         $data = $request->all();
         DB::beginTransaction();
