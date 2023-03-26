@@ -18,4 +18,9 @@ class Appearance extends Model
         'name',
     ];
     public $timestamps = false;
+
+    public function evidenceAppearances(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(EvidenceAppearance::class,'appearance_id','id');
+    }
 }
