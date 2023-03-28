@@ -20,8 +20,8 @@ return new class extends Migration {
                 $table->foreign('evidence_id')
                     ->references('id')->on('evidences')
                     ->onDelete('cascade');
-                $table->string('number_ud')->comment('Номер УД');
-                $table->date('date_ud')->comment('Дата возбуждения УД');
+                $table->string('ud_number')->comment('Номер УД');
+                $table->date('ud_date')->comment('Дата возбуждения УД');
 
                 $table->timestamps();
                 $table->softDeletes();

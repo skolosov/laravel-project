@@ -7,7 +7,7 @@ namespace App\Services;
 use App\Models\Evidence\Department;
 use App\Models\Evidence\Post;
 
-class StaffService extends BaseService
+class EmployeeService extends BaseService
 {
     public function hasPost(string $post): Post
     {

@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <h1>Должностное лицо</h1>
-        <x-forms.form method="post" action="{{route('staff.store')}}">
+        <x-forms.form method="post" action="{{route('employee.store')}}">
             <x-forms.input input-type="text" name-input="fio"
                            label-title="ФИО"
                            placeholder="Фамилия Имя Отчество"/>

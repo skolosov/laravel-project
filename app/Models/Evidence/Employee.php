@@ -17,9 +17,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string updated_at
  */
 
-class Staff extends Model
+class Employee extends Model
 {
-    protected $table = 'staffs';
+    protected $table = 'employees';
 
     protected $fillable = [
         'fio',

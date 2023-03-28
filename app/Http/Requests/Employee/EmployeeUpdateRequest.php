@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Requests\Staff;
+namespace App\Http\Requests\Employee;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StaffStoreRequest extends FormRequest
+class EmployeeUpdateRequest extends FormRequest
 {
     public function validationData()
     {
-        return $this->only(['fio', 'post', 'department', 'phone']);
+        return $this->only(['fio', 'post_id', 'department_id', 'phone']);
     }
 
     /**
@@ -29,10 +29,10 @@ class StaffStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'fio' => ['required', 'string'],
-            'post' => ['required', 'string'],
-            'department' => ['required', 'string'],
-            'phone' => ['required', 'min:11', 'numeric']
+            'fio' => [ 'string'],
+            'post_id' => [ 'int'],
+            'department_id' => [ 'int'],
+            'phone' => [ 'min:11', 'numeric']
         ];
     }
 }
