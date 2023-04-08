@@ -3,6 +3,7 @@
 namespace App\Models\Evidence\Resources;
 
 use App\Models\Evidence\EvidenceAppearance;
+use App\Models\Evidence\EvidenceTraffic;
 use App\Models\Evidence\StorageLocation;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -47,5 +48,10 @@ class Evidence extends Model
     public function evidenceAppearances(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(EvidenceAppearance::class,'evidence_id','id');
+    }
+
+    public function evidenceTraffics(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(EvidenceTraffic::class,'evidence_id','id');
     }
 }

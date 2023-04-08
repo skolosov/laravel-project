@@ -29,9 +29,9 @@ class EvidenceUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'resource_id' => ['required', 'int'],
-            'resource_type' => ['required', 'int'],
-            'storage_location_id' => ['required', 'int'],
+            'resource_id' => [ 'int'],
+            'resource_type' => [ 'int'],
+            'storage_location_id' => [ 'int'],
         ];
     }
 }

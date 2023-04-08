@@ -42,7 +42,6 @@ class StorageLocationController extends Controller
      */
     public function store(StorageLocationStoreRequest $request): Model
     {
-        //dd($request->all());
         return $this->service->store(StorageLocation::class, $request->all());
     }
 

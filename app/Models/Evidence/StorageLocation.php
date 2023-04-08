@@ -4,12 +4,10 @@ namespace App\Models\Evidence;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 use App\Models\Evidence\Resources\Evidence;
-use App\Models\Evidence\Division;
 
 /**
- * Class EvidenceAppearance
+ * Class StorageLocation
  * @package App\Models\Evidence
  *
  * @property int id
@@ -37,5 +35,15 @@ class StorageLocation extends Model
     public function division(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Division::class,'division_id','id');
+    }
+
+    public function evidenceTrafficsFrom(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(EvidenceTraffic::class, 'from_storage_id', 'id');
+    }
+
+    public function evidenceTrafficsTo(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(EvidenceTraffic::class, 'to_storage_id', 'id');
     }
 }

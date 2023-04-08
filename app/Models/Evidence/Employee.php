@@ -5,7 +5,7 @@ namespace App\Models\Evidence;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 /**
- * Class EvidenceAppearance
+ * Class Employee
  * @package App\Models\Evidence
  *
  * @property int id
@@ -19,6 +19,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model
 {
+    use HasFactory;
+
     protected $table = 'employees';
 
     protected $fillable = [
@@ -34,6 +36,11 @@ class Employee extends Model
     public function department(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Department::class,'department_id','id');
+    }
+
+    public function evidenceTraffics(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(EvidenceTraffic::class, 'employee_id', 'id');
     }
 
 }
