@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class EvidenceAppearance
+ * Class CriminalCase
  * @package App\Models\Evidence
  *
  * @property int id
@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CriminalCase extends Model
 {
+    use HasFactory;
+
     protected $table = 'criminal_cases';
 
     protected $fillable = [

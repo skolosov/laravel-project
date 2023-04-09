@@ -40,7 +40,7 @@ class EvidenceController extends Controller
      * @param int $id
      * @return Evidence|null
      */
-    public function show(EvidenceShowRequest $request, $id): ?Model
+    public function show(EvidenceShowRequest $request, int $id): ?Model
     {
         return $this->service->show(Evidence::class, $id, ['resource']);
     }
@@ -56,6 +56,7 @@ class EvidenceController extends Controller
         DB::beginTransaction();
         /** @var Alcohol|Drug|Money|Transport|Weapon|OtherEvidence $resource */
         $resource = $this->service->store($model, $data);
+        DB::commit();
         $evidence = $this->service->store(
             Evidence::class,
             [

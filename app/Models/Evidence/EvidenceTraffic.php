@@ -3,11 +3,12 @@
 namespace App\Models\Evidence;
 
 use App\Models\Evidence\Resources\Evidence;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Class EvidenceAppearance
+ * Class EvidenceTraffic
  * @package App\Models\Evidence
  *
  * @property int id
@@ -26,6 +27,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class EvidenceTraffic extends Model
 {
+    use HasFactory;
+
     protected $table = 'evidence_traffic';
 
     protected $fillable = [
@@ -43,5 +46,20 @@ class EvidenceTraffic extends Model
     public function evidence(): BelongsTo
     {
        return $this->belongsTo(Evidence::class,'evidence_id','id');
+    }
+
+    public function employee(): BelongsTo
+    {
+        return $this->belongsTo(Employee::class,'employee_id','id');
+    }
+
+    public function fromStorage(): BelongsTo
+    {
+        return $this->belongsTo(StorageLocation::class,'from_storage_id','id');
+    }
+
+    public function toStorage(): BelongsTo
+    {
+        return $this->belongsTo(StorageLocation::class,'to_storage_id','id');
     }
 }

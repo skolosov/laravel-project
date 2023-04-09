@@ -5,6 +5,7 @@ use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\EvidenceAppearanceController;
 use App\Http\Controllers\EvidenceController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\EvidenceTrafficController;
 use App\Http\Controllers\StorageLocationController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +39,8 @@ Route::apiResource('evidences', EvidenceController::class)
 Route::apiResource('employees', EmployeeController::class)
     ->middleware(['auth:api']);
 Route::apiResource('evidence-appearances', EvidenceAppearanceController::class)
+    ->middleware(['auth:api']);
+Route::apiResource('evidence-traffics', EvidenceTrafficController::class)
     ->middleware(['auth:api']);
 
 
