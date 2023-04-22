@@ -22,6 +22,8 @@ class Money extends Model
 {
     use HasFactory;
 
+    public const MODEL_LABEL = 'Деньги';
+
     protected $table = 'moneys';
 
     protected $fillable = [

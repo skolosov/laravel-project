@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorageLocation\StorageLocationIndexRequest;
 use App\Http\Requests\StorageLocation\StorageLocationStoreRequest;
 use App\Http\Requests\StorageLocation\StorageLocationUpdateRequest;
+use App\Http\Resources\StorageLocationResponse;
 use App\Models\Evidence\StorageLocation;
 use App\Services\StorageLocationService;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 
 class StorageLocationController extends Controller
 {
@@ -19,40 +24,42 @@ class StorageLocationController extends Controller
 
     /**
      * @param StorageLocationIndexRequest $request
-     * @return Collection
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index(StorageLocationIndexRequest $request): Collection
+    public function index(StorageLocationIndexRequest $request): AnonymousResourceCollection
     {
-        return $this->service->index(StorageLocation::class, null, $request->get('filter'));
+        return StorageLocationResponse::collection(
+            $this->service->index(StorageLocation::class, null, $request->get('filter'))
+        );
     }
 
     /**
      * @param Request $request
      * @param int $id
-     * @return StorageLocation|null
+     * @return \App\Http\Resources\StorageLocationResponse
      */
-    public function show(Request $request, int $id): ?Model
+    public function show(Request $request, int $id): StorageLocationResponse
     {
-        return $this->service->show(StorageLocation::class, $id);
+        return new StorageLocationResponse($this->service->show(StorageLocation::class, $id));
     }
 
     /**
      * @param StorageLocationStoreRequest $request
-     * @return StorageLocation
+     * @return \App\Http\Resources\StorageLocationResponse
      */
-    public function store(StorageLocationStoreRequest $request): Model
+    public function store(StorageLocationStoreRequest $request): StorageLocationResponse
     {
-        return $this->service->store(StorageLocation::class, $request->all());
+        return new StorageLocationResponse($this->service->store(StorageLocation::class, $request->all()));
     }
 
     /**
      * @param StorageLocationUpdateRequest $request
      * @param int $id
-     * @return StorageLocation
+     * @return \App\Http\Resources\StorageLocationResponse
      */
-    public function update(StorageLocationUpdateRequest $request, int $id): Model
+    public function update(StorageLocationUpdateRequest $request, int $id): StorageLocationResponse
     {
-        return $this->service->update(StorageLocation::class, $id, $request->all());
+        return new StorageLocationResponse($this->service->update(StorageLocation::class, $id, $request->all()));
     }
 
     /**

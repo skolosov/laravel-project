@@ -26,6 +26,8 @@ class OtherEvidence extends Model
 {
     use HasFactory;
 
+    public const MODEL_LABEL = 'Прочие ВД';
+
     protected $table = 'other_evidences';
 
     protected $fillable = [

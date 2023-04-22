@@ -22,6 +22,8 @@ class Drug extends Model
 {
     use HasFactory;
 
+    public const MODEL_LABEL = 'Наркотики';
+
     protected $table = 'drugs';
 
     protected $fillable = [

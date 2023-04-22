@@ -34,8 +34,9 @@ Route::group(
 
 Route::apiResource('storage-locations', StorageLocationController::class)
     ->middleware(['auth:api']);
-Route::apiResource('evidences', EvidenceController::class)
-    ->middleware(['auth:api']);
+Route::get('evidences/types', [EvidenceController::class, 'types']);
+Route::apiResource('evidences', EvidenceController::class);
+    //->middleware(['auth:api']);
 Route::apiResource('employees', EmployeeController::class)
     ->middleware(['auth:api']);
 Route::apiResource('evidence-appearances', EvidenceAppearanceController::class)

@@ -25,6 +25,8 @@ class Weapon extends Model
 {
     use HasFactory;
 
+    public const MODEL_LABEL = 'Оружие';
+
     protected $table = 'weapons';
 
     protected $fillable = [

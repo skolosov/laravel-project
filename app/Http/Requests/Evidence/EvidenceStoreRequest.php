@@ -8,7 +8,7 @@ class EvidenceStoreRequest extends FormRequest
 {
     public function validationData()
     {
-        return $this->only(['resource_id', 'resource_type', 'storage_location_id']);
+        return $this->only(['resource_type', 'storage_location_id']);
     }
 
     /**
@@ -29,7 +29,6 @@ class EvidenceStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'resource_id' => ['required', 'int'],
             'resource_type' => ['required', 'int'],
             'storage_location_id' => ['required', 'int'],
         ];

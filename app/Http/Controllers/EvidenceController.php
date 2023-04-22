@@ -6,6 +6,7 @@ use App\Http\Requests\Evidence\EvidenceIndexRequest;
 use App\Http\Requests\Evidence\EvidenceShowRequest;
 use App\Http\Requests\Evidence\EvidenceStoreRequest;
 use App\Http\Requests\Evidence\EvidenceUpdateRequest;
+use App\Http\Resources\EvidenceResponse;
 use App\Models\Evidence\Resources\Alcohol;
 use App\Models\Evidence\Resources\Drug;
 use App\Models\Evidence\Resources\Evidence;
@@ -15,9 +16,13 @@ use App\Models\Evidence\Resources\Transport;
 use App\Models\Evidence\Resources\Weapon;
 use App\Services\EvidenceService;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Js;
 
 
 class EvidenceController extends Controller
@@ -27,28 +32,38 @@ class EvidenceController extends Controller
     {
     }
 
+    public function types(): AnonymousResourceCollection
+    {
+        return JsonResource::collection($this->service->getTypes());
+//        return new JsonResource($this->service->getTypes());
+    }
+
     /**
      * @param EvidenceIndexRequest $request
-     * @return Collection
+     * @return AnonymousResourceCollection
      */
-    public function index(EvidenceIndexRequest $request): Collection
+    public function index(EvidenceIndexRequest $request): AnonymousResourceCollection
     {
-        return $this->service->index(Evidence::class, ['resource'], $request->get('filter'));
+        return EvidenceResponse::collection(
+            $this->service->index(Evidence::class, ['resource'], $request->get('filter'))
+        );
     }
+
     /**
      * @param EvidenceShowRequest $request
      * @param int $id
-     * @return Evidence|null
+     * @return \Illuminate\Http\Resources\Json\JsonResource
      */
-    public function show(EvidenceShowRequest $request, int $id): ?Model
+    public function show(EvidenceShowRequest $request, int $id): JsonResource
     {
-        return $this->service->show(Evidence::class, $id, ['resource']);
+        return new EvidenceResponse($this->service->show(Evidence::class, $id, ['resource']));
     }
+
     /**
      * @param EvidenceStoreRequest $request
-     * @return Evidence
+     * @return \Illuminate\Http\Resources\Json\JsonResource
      */
-    public function store(EvidenceStoreRequest $request): Model
+    public function store(EvidenceStoreRequest $request): JsonResource
     {
         $data = $request->all();
         $type = Arr::pull($data, 'resource_type');
@@ -56,7 +71,6 @@ class EvidenceController extends Controller
         DB::beginTransaction();
         /** @var Alcohol|Drug|Money|Transport|Weapon|OtherEvidence $resource */
         $resource = $this->service->store($model, $data);
-        DB::commit();
         $evidence = $this->service->store(
             Evidence::class,
             [
@@ -67,17 +81,17 @@ class EvidenceController extends Controller
             ['resource'],
         );
         DB::commit();
-        return $evidence;
+        return new EvidenceResponse($evidence);
     }
 
     /**
      * @param EvidenceUpdateRequest $request
      * @param int $id
-     * @return Evidence
+     * @return \Illuminate\Http\Resources\Json\JsonResource
      */
-    public function update(EvidenceUpdateRequest $request, int $id): Model
+    public function update(EvidenceUpdateRequest $request, int $id): JsonResource
     {
-        return $this->service->update(Evidence::class, $id, $request->all(), ['resource']);
+        return new EvidenceResponse($this->service->update(Evidence::class, $id, $request->all(), ['resource']));
     }
 
     /**

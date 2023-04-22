@@ -24,4 +24,28 @@ class EvidenceService extends BaseService
             default => Alcohol::class,
         };
     }
+
+    public function getTypeID(string $typeClass = Alcohol::class): int
+    {
+        return match ($typeClass) {
+            Drug::class => 2,
+            Money::class => 3,
+            Transport::class => 4,
+            Weapon::class => 5,
+            OtherEvidence::class => 6,
+            default => 1,
+        };
+    }
+
+    public function getTypes(): array
+    {
+        return [
+            ['id' => 1, 'model' => Alcohol::class, 'name' => Alcohol::MODEL_LABEL],
+            ['id' => 2, 'model' => Drug::class, 'name' => Drug::MODEL_LABEL],
+            ['id' => 3, 'model' => Money::class, 'name' => Money::MODEL_LABEL],
+            ['id' => 4, 'model' => Transport::class, 'name' => Transport::MODEL_LABEL],
+            ['id' => 5, 'model' => Weapon::class, 'name' => Weapon::MODEL_LABEL],
+            ['id' => 6, 'model' => OtherEvidence::class, 'name' => OtherEvidence::MODEL_LABEL],
+        ];
+    }
 }

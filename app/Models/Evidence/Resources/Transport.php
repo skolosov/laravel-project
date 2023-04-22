@@ -25,6 +25,8 @@ class Transport extends Model
 {
     use HasFactory;
 
+    public const MODEL_LABEL = 'Транспорт';
+
     protected $table = 'transports';
 
     protected $fillable = [

@@ -20,6 +20,8 @@ class Alcohol extends Model
 {
     use HasFactory;
 
+    public const MODEL_LABEL = 'Алкоголь';
+
     protected $table = 'alcohols';
 
     protected $fillable = [

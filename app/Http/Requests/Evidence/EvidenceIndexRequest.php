@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Evidence;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class EvidenceIndexRequest extends FormRequest
 {
@@ -32,7 +33,7 @@ class EvidenceIndexRequest extends FormRequest
             'filter' => ['array:id,storage_location_id,evidence_id'],
             'filter.id' => ['string'],
             'filter.evidence_id' => ['string'],
-            'filter.storage_location_id' => ['string']
+            'filter.storage_location_id' => ['string'],
         ];
     }
 }
